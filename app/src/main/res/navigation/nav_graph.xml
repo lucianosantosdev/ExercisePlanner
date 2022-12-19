@@ -7,7 +7,16 @@
 
     <fragment
         android:id="@+id/routineItemFragment"
-        android:name="dev.lucianosantos.exerciseplanner.RoutineListFragment"
-        android:label="fragment_routine_item_list"
-        tools:layout="@layout/fragment_routine_list" />
+        android:name="dev.lucianosantos.exerciseplanner.collections.RoutineListFragment"
+        android:label="fragment_routine_list"
+        tools:layout="@layout/fragment_routine_list" >
+        <action
+            android:id="@+id/action_routineItemFragment_to_routineFormFragment"
+            app:destination="@id/routineFormFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/routineFormFragment"
+        android:name="dev.lucianosantos.exerciseplanner.forms.RoutineFormFragment"
+        android:label="fragment_routine_form"
+        tools:layout="@layout/fragment_routine_form" />
 </navigation>
