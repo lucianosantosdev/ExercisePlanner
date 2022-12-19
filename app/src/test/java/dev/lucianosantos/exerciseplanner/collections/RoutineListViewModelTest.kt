@@ -3,8 +3,6 @@ package dev.lucianosantos.exerciseplanner.collections
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import dev.lucianosantos.exerciseplanner.repositories.TestRoutinesRepository
 import dev.lucianosantos.exerciseplanner.utils.getOrAwaitValue
-import junit.framework.Assert.assertEquals
-import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -35,9 +33,8 @@ class RoutineListViewModelTest {
 
         // Assert
         assert(uiState.routineItemList.isNotEmpty())
-        assert(uiState.routineItemList.isNotEmpty())
-        assertEquals("ID", uiState.routineItemList[0].id)
-        assertEquals("Test Routine", uiState.routineItemList[0].name)
-        assertEquals(listOf(1,2,3,4,5,6,7), uiState.routineItemList[0].daysOfWeek)
+        assert(uiState.routineItemList[0].id == "ID")
+        assert(uiState.routineItemList[0].name == "Test Routine")
+        assert(uiState.routineItemList[0].daysOfWeek == listOf(1,2,3,4,5,6,7))
     }
 }

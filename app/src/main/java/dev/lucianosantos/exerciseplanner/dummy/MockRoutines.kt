@@ -2,7 +2,7 @@ package dev.lucianosantos.exerciseplanner.dummy
 
 import dev.lucianosantos.exerciseplanner.collections.RoutineItem
 import dev.lucianosantos.exerciseplanner.repositories.RoutinesRepository
-import java.util.UUID
+import java.util.*
 
 object MockRoutines : RoutinesRepository  {
     val routineList: MutableList<RoutineItem> = mutableListOf(

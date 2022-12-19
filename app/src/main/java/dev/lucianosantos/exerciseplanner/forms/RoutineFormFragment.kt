@@ -1,10 +1,10 @@
 package dev.lucianosantos.exerciseplanner.forms
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import dev.lucianosantos.exerciseplanner.collections.RoutineListViewModel
@@ -46,7 +46,7 @@ class RoutineFormFragment : Fragment() {
     }
 
     private fun onSave() {
-        val name = binding.routineNameEditText?.text.toString()
+        val name = binding.routineNameEditText.text.toString()
         val daysOfWeek = binding.daysOfWeekChipGroup.checkedChipIds
 
         viewModel.addRoutine(name, daysOfWeek)

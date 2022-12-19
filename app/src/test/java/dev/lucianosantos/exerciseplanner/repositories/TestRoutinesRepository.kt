@@ -1,7 +1,7 @@
 package dev.lucianosantos.exerciseplanner.repositories
 
 import dev.lucianosantos.exerciseplanner.collections.RoutineItem
-import java.util.UUID
+import java.util.*
 
 class TestRoutinesRepository : RoutinesRepository {
 
