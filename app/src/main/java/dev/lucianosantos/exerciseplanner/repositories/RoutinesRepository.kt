@@ -1,10 +1,10 @@
 package dev.lucianosantos.exerciseplanner.repositories
 
-import dev.lucianosantos.exerciseplanner.collections.RoutineItem
+import dev.lucianosantos.exerciseplanner.collections.ExerciseItem
 
-interface RoutinesRepository {
+interface ExercisesRepository {
 
-    fun fetchRoutines() : List<RoutineItem>
+    fun fetchExercises() : List<ExerciseItem>
 
-    fun addRoutine(name: String, daysOfWeek: List<Int>)
+    fun addExercise(name: String)
 }

@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import dev.lucianosantos.exerciseplanner.collections.RoutineListViewModel
-import dev.lucianosantos.exerciseplanner.databinding.FragmentRoutineFormBinding
-import dev.lucianosantos.exerciseplanner.dummy.MockRoutines
+import dev.lucianosantos.exerciseplanner.collections.ExerciseListViewModel
+import dev.lucianosantos.exerciseplanner.dummy.MockExercises
 import dev.lucianosantos.exerciseplanner.R
+import dev.lucianosantos.exerciseplanner.databinding.FragmentExerciseFormBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,20 +20,20 @@ private const val ARG_PARAM2 = "param2"
 /**
  * A [Fragment] that displays a form to create a new routine.
  */
-class RoutineFormFragment : Fragment() {
+class ExerciseFormFragment : Fragment() {
 
-    private var _binding: FragmentRoutineFormBinding? = null
+    private var _binding: FragmentExerciseFormBinding? = null
 
     private val binding get() = _binding!!
 
-    private val viewModel: RoutineListViewModel by activityViewModels {
-        RoutineListViewModel.Factory(MockRoutines)
+    private val viewModel: ExerciseListViewModel by activityViewModels {
+        ExerciseListViewModel.Factory(MockExercises)
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentRoutineFormBinding.inflate(inflater, container, false)
+        _binding = FragmentExerciseFormBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -47,9 +47,8 @@ class RoutineFormFragment : Fragment() {
     }
 
     private fun onSave() {
-        val name = binding.routineNameEditText.text.toString()
-        val daysOfWeek = binding.daysOfWeekChipGroup.checkedChipIds
+        val name = binding.exerciseNameEditText.text.toString()
 
-        viewModel.addRoutine(name, daysOfWeek)
+        viewModel.addExercise(name)
     }
 }

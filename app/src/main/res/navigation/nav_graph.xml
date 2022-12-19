@@ -18,5 +18,23 @@
         android:id="@+id/routineFormFragment"
         android:name="dev.lucianosantos.exerciseplanner.forms.RoutineFormFragment"
         android:label="fragment_routine_form"
-        tools:layout="@layout/fragment_routine_form" />
+        tools:layout="@layout/fragment_routine_form" >
+        <action
+            android:id="@+id/action_routineFormFragment_to_exerciseItemFragment"
+            app:destination="@id/exerciseItemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/exerciseItemFragment"
+        android:name="dev.lucianosantos.exerciseplanner.collections.ExerciseListFragment"
+        android:label="fragment_exercise_list"
+        tools:layout="@layout/fragment_exercise_list" >
+        <action
+            android:id="@+id/action_exerciseItemFragment_to_exerciseFormFragment"
+            app:destination="@id/exerciseFormFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/exerciseFormFragment"
+        android:name="dev.lucianosantos.exerciseplanner.forms.ExerciseFormFragment"
+        android:label="fragment_exercise_form"
+        tools:layout="@layout/fragment_exercise_form" />
 </navigation>
