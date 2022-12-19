@@ -5,8 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import dev.lucianosantos.exerciseplanner.repositories.RoutinesRepository
-import java.time.DayOfWeek
-import java.util.UUID
 
 class RoutineListViewModel(private val repository: RoutinesRepository) : ViewModel() {
 

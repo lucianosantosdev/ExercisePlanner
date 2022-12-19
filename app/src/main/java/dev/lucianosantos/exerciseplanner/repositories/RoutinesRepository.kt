@@ -1,7 +1,6 @@
 package dev.lucianosantos.exerciseplanner.repositories
 
 import dev.lucianosantos.exerciseplanner.collections.RoutineItem
-import java.time.DayOfWeek
 
 interface RoutinesRepository {
 
