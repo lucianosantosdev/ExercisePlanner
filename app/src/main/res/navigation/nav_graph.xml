@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/routineItemFragment">
+    app:startDestination="@id/exerciseFormFragment" >
+<!--    app:startDestination="@id/routineItemFragment">-->
 
     <fragment
         android:id="@+id/routineItemFragment"
@@ -38,6 +39,6 @@
     <fragment
         android:id="@+id/exerciseFormFragment"
         android:name="dev.lucianosantos.exerciseplanner.forms.ExerciseFormFragment"
-        android:label="fragment_exercise_form"
+        android:label="@string/title_exercise_form_fragment"
         tools:layout="@layout/fragment_exercise_form" />
 </navigation>

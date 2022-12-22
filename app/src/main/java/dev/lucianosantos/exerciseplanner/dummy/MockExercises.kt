@@ -1,30 +1,27 @@
 package dev.lucianosantos.exerciseplanner.dummy
 
-import dev.lucianosantos.exerciseplanner.collections.ExerciseItem
+import dev.lucianosantos.exerciseplanner.models.Exercise
 import dev.lucianosantos.exerciseplanner.repositories.ExercisesRepository
 import java.util.*
+import kotlin.time.Duration
 
-object MockExercises : ExercisesRepository  {
-    private val exerciseList: MutableList<ExerciseItem> = mutableListOf(
-        ExerciseItem(
-            id = UUID.randomUUID().toString(),
-            name = "Pullup"
-        ),
-        ExerciseItem(
-            id = UUID.randomUUID().toString(),
-            name = "Flexão"
-        ),
-    )
+object MockExercises : ExercisesRepository {
+    private val exerciseList: MutableList<Exercise> = mutableListOf()
 
-    override fun fetchExercises(): List<ExerciseItem> {
+    override fun fetchExercises(): List<Exercise> {
         return exerciseList.map { it.copy() }
     }
 
     override fun addExercise(name: String) {
         exerciseList.add(
-            ExerciseItem(
+            Exercise(
                 id = UUID.randomUUID().toString(),
-                name = name,
+                name = "Test Exercise",
+                sessions = 1,
+                repetitions = 1,
+                duration = Duration.ZERO,
+                intensity = 10,
+                weight = 10
             )
         )
     }

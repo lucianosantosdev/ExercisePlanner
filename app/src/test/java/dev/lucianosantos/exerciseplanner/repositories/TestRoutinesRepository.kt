@@ -1,17 +1,17 @@
 package dev.lucianosantos.exerciseplanner.repositories
 
-import dev.lucianosantos.exerciseplanner.collections.RoutineItem
+import dev.lucianosantos.exerciseplanner.models.Routine
 import java.util.*
 
 class TestRoutinesRepository : RoutinesRepository {
 
-    val routineList = mutableListOf<RoutineItem>()
+    val routineList = mutableListOf<Routine>()
 
-    override fun fetchRoutines(): List<RoutineItem> = routineList
+    override fun fetchRoutines(): List<Routine> = routineList
 
     override fun addRoutine(name: String, daysOfWeek: List<Int>) {
         routineList.add(
-            RoutineItem(
+            Routine(
                 id = UUID.randomUUID().toString(),
                 name = name,
                 daysOfWeek = daysOfWeek

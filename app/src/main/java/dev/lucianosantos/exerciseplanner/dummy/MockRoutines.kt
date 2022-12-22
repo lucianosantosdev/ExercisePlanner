@@ -1,43 +1,23 @@
 package dev.lucianosantos.exerciseplanner.dummy
 
-import dev.lucianosantos.exerciseplanner.collections.RoutineItem
+import dev.lucianosantos.exerciseplanner.models.Routine
 import dev.lucianosantos.exerciseplanner.repositories.RoutinesRepository
 import java.util.*
 
 object MockRoutines : RoutinesRepository  {
-    val routineList: MutableList<RoutineItem> = mutableListOf(
-        RoutineItem(
-            id = UUID.randomUUID().toString(),
-            name = "Canoagem",
-            daysOfWeek = listOf(1,2,3,4,5,6,7)
-        ),
-        RoutineItem(
-            id = UUID.randomUUID().toString(),
-            name = "BJJ",
-            daysOfWeek = listOf(1,2,3,4,5,6,7)
-        ),
-        RoutineItem(
-            id = UUID.randomUUID().toString(),
-            name = "Natação",
-            daysOfWeek = listOf(1,2,3,4,5,6,7)
-        ),
-        RoutineItem(
-            id = UUID.randomUUID().toString(),
-            name = "Tai Chi",
-            daysOfWeek = listOf(1,2,3,4,5,6,7)
-        ),
-    )
+    val routineList: MutableList<Routine> = mutableListOf()
 
-    override fun fetchRoutines(): List<RoutineItem> {
+    override fun fetchRoutines(): List<Routine> {
         return routineList.map { it.copy() }
     }
 
     override fun addRoutine(name: String, daysOfWeek: List<Int>) {
         routineList.add(
-            RoutineItem(
+            Routine(
                 id = UUID.randomUUID().toString(),
                 name = name,
-                daysOfWeek = daysOfWeek
+                daysOfWeek = daysOfWeek,
+                listOf()
             )
         )
     }

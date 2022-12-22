@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import dev.lucianosantos.exerciseplanner.models.Routine
 import dev.lucianosantos.exerciseplanner.repositories.RoutinesRepository
 
 class RoutineListViewModel(private val repository: RoutinesRepository) : ViewModel() {
@@ -29,7 +30,7 @@ class RoutineListViewModel(private val repository: RoutinesRepository) : ViewMod
         }
     }
 
-    data class UiState(val routineItemList: List<RoutineItem>)
+    data class UiState(val routineItemList: List<Routine>)
 
     @Suppress("UNCHECKED_CAST")
     class Factory(private val repository: RoutinesRepository) : ViewModelProvider.Factory {

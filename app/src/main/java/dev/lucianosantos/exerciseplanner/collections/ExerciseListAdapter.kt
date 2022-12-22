@@ -6,13 +6,14 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import dev.lucianosantos.exerciseplanner.databinding.ExerciseItemBinding
+import dev.lucianosantos.exerciseplanner.models.Exercise
 
 /**
- * [RecyclerView.Adapter] that can display a [ExerciseItem].
+ * [RecyclerView.Adapter] that can display a [Exercise].
  */
 class ExerciseListAdapter() : RecyclerView.Adapter<ExerciseListAdapter.ViewHolder>() {
 
-    private val asyncListDiffer: AsyncListDiffer<ExerciseItem> = AsyncListDiffer(this, DiffCallback)
+    private val asyncListDiffer: AsyncListDiffer<Exercise> = AsyncListDiffer(this, DiffCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -33,22 +34,26 @@ class ExerciseListAdapter() : RecyclerView.Adapter<ExerciseListAdapter.ViewHolde
 
     override fun getItemCount(): Int = asyncListDiffer.currentList.size
 
-    fun updateExercises(Exercises: List<ExerciseItem>) {
+    fun updateExercises(Exercises: List<Exercise>) {
         asyncListDiffer.submitList(Exercises)
     }
 
     inner class ViewHolder(private val binding: ExerciseItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(Exercise: ExerciseItem) {
-            binding.exerciseNameTextView.text = Exercise.name
+        fun bind(Exercise: Exercise) {
+            binding.nameTextView.text = Exercise.name
+            binding.firstDetailTextView.text = Exercise.sessions?.toString()
+            binding.secondDetailTextView.text = Exercise.repetitions?.toString()
+            binding.thirdDetailTextView.text = Exercise.repetitions?.toString()
+
         }
     }
 
-    object DiffCallback : DiffUtil.ItemCallback<ExerciseItem>() {
-        override fun areItemsTheSame(oldItem: ExerciseItem, newItem: ExerciseItem): Boolean {
+    object DiffCallback : DiffUtil.ItemCallback<Exercise>() {
+        override fun areItemsTheSame(oldItem: Exercise, newItem: Exercise): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: ExerciseItem, newItem: ExerciseItem): Boolean {
+        override fun areContentsTheSame(oldItem: Exercise, newItem: Exercise): Boolean {
             return oldItem.name == newItem.name
         }
     }

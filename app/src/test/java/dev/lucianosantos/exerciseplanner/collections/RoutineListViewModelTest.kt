@@ -1,6 +1,7 @@
 package dev.lucianosantos.exerciseplanner.collections
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import dev.lucianosantos.exerciseplanner.models.Routine
 import dev.lucianosantos.exerciseplanner.repositories.TestRoutinesRepository
 import dev.lucianosantos.exerciseplanner.utils.getOrAwaitValue
 import org.junit.Before
@@ -25,7 +26,7 @@ class RoutineListViewModelTest {
     fun `Verify uiState is initialized with Routines`() {
         // Arrange
         testRoutineRepository.routineList.add(
-            RoutineItem(id = "ID", "Test Routine", daysOfWeek = listOf(1,2,3,4,5,6,7))
+            Routine(id = "ID", "Test Routine", daysOfWeek = listOf(1,2,3,4,5,6,7))
         )
 
         // Act
