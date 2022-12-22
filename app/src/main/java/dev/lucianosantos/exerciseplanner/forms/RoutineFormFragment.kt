@@ -29,6 +29,7 @@ class RoutineFormFragment : Fragment() {
     private val viewModel: RoutineListViewModel by activityViewModels {
         RoutineListViewModel.Factory(MockRoutines)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,7 +43,7 @@ class RoutineFormFragment : Fragment() {
 
         binding.saveButton.setOnClickListener {
             onSave()
-            findNavController().navigate(R.id.action_routineFormFragment_to_exerciseItemFragment)
+            findNavController().navigate(R.id.action_routineFormFragment_to_exerciseListFragment)
         }
     }
 

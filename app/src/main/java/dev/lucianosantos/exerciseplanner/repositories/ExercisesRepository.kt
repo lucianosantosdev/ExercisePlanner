@@ -7,4 +7,6 @@ interface RoutinesRepository {
     fun fetchRoutines() : List<Routine>
 
     fun addRoutine(name: String, daysOfWeek: List<Int>)
+
+    fun getRoutineById(id: String) : Routine
 }

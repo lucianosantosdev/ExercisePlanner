@@ -11,12 +11,15 @@ import dev.lucianosantos.exerciseplanner.models.Routine
 /**
  * [RecyclerView.Adapter] that can display a [Routine].
  */
-class RoutineListAdapter() : RecyclerView.Adapter<RoutineListAdapter.ViewHolder>() {
+class RoutineListAdapter(private val onClickListener: (String) -> Unit) : RecyclerView.Adapter<RoutineListAdapter.ViewHolder>() {
 
     private val asyncListDiffer: AsyncListDiffer<Routine> = AsyncListDiffer(this, DiffCallback)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    interface OnClickListener {
+        fun onItemClicked(id: Int)
+    }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             RoutineItemBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -24,7 +27,6 @@ class RoutineListAdapter() : RecyclerView.Adapter<RoutineListAdapter.ViewHolder>
                 false
             )
         )
-
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -41,6 +43,13 @@ class RoutineListAdapter() : RecyclerView.Adapter<RoutineListAdapter.ViewHolder>
     inner class ViewHolder(private val binding: RoutineItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(routine: Routine) {
             binding.routineNameTextView.text = routine.name
+
+            itemView.setOnClickListener {
+                val position = absoluteAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onClickListener(routine.id)
+                }
+            }
         }
     }
 

@@ -4,14 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import dev.lucianosantos.exerciseplanner.R
 import dev.lucianosantos.exerciseplanner.databinding.FragmentExerciseListBinding
 import dev.lucianosantos.exerciseplanner.dummy.MockExercises
+import dev.lucianosantos.exerciseplanner.dummy.MockRoutines
 
 /**
  * A fragment representing a list of Items.
@@ -26,6 +29,10 @@ class ExerciseListFragment : Fragment() {
 
     private val viewModel: ExerciseListViewModel by activityViewModels {
         ExerciseListViewModel.Factory(MockExercises)
+    }
+
+    private val routinesViewModel: RoutineListViewModel by activityViewModels {
+        RoutineListViewModel.Factory(MockRoutines)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,11 +55,11 @@ class ExerciseListFragment : Fragment() {
         addDividerDecoration()
 
         binding.saveButton.setOnClickListener {
-            findNavController().navigate(R.id.action_exerciseItemFragment_pop_to_routineItemFragment)
+            findNavController().navigate(R.id.action_exerciseListFragment_pop_to_routineListFragment)
         }
 
         binding.addExerciseFloatingActionButton.setOnClickListener{
-            findNavController().navigate(R.id.action_exerciseItemFragment_to_exerciseFormFragment)
+            findNavController().navigate(R.id.action_exerciseListFragment_to_exerciseFormFragment)
         }
 
         viewModel.stateOnceAndStream().observe(viewLifecycleOwner) {
