@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/routineItemFragment"
         android:name="dev.lucianosantos.exerciseplanner.collections.RoutineListFragment"
-        android:label="fragment_routine_list"
+        android:label="@string/title_fragment_routine_list"
         tools:layout="@layout/fragment_routine_list" >
         <action
             android:id="@+id/action_routineItemFragment_to_routineFormFragment"

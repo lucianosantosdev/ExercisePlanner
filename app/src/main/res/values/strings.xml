@@ -9,4 +9,6 @@
     <string name="sunday">D</string>
     <string name="save">Salvar</string>
     <string name="routine_name_hint">Nome do treino</string>
+    <string name="title_activity_main">Exercise Planner</string>
+    <string name="title_fragment_routine_list">Titulo</string>
 </resources>
