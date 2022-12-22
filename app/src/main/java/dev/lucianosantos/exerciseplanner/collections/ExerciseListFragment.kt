@@ -47,6 +47,10 @@ class ExerciseListFragment : Fragment() {
         binding.exerciseRecyclerView.adapter = adapter
         addDividerDecoration()
 
+        binding.saveButton.setOnClickListener {
+            findNavController().navigate(R.id.action_exerciseItemFragment_pop_to_routineItemFragment)
+        }
+
         binding.addExerciseFloatingActionButton.setOnClickListener{
             findNavController().navigate(R.id.action_exerciseItemFragment_to_exerciseFormFragment)
         }

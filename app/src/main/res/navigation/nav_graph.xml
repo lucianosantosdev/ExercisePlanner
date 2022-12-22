@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_exerciseItemFragment_to_exerciseFormFragment"
             app:destination="@id/exerciseFormFragment" />
+        <action
+            android:id="@+id/action_exerciseItemFragment_pop_to_routineItemFragment"
+            app:popUpTo="@id/routineItemFragment" />
     </fragment>
     <fragment
         android:id="@+id/exerciseFormFragment"

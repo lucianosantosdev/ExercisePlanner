@@ -42,7 +42,7 @@ class ExerciseFormFragment : Fragment() {
 
         binding.saveButton.setOnClickListener {
             onSave()
-            findNavController().navigate(R.id.action_routineFormFragment_to_exerciseItemFragment)
+            findNavController().navigateUp()
         }
     }
 
