@@ -1,6 +1,6 @@
 package dev.lucianosantos.exerciseplanner.repositories
 
-import dev.lucianosantos.exerciseplanner.models.Routine
+import dev.lucianosantos.exerciseplanner.data.Routine
 import java.util.*
 
 class TestRoutinesRepository : RoutinesRepository {

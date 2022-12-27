@@ -6,10 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dev.lucianosantos.exerciseplanner.collections.ExerciseListViewModel
-import dev.lucianosantos.exerciseplanner.dummy.MockExercises
-import dev.lucianosantos.exerciseplanner.R
 import dev.lucianosantos.exerciseplanner.databinding.FragmentExerciseFormBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -26,9 +25,8 @@ class ExerciseFormFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    private val viewModel: ExerciseListViewModel by activityViewModels {
-        ExerciseListViewModel.Factory(MockExercises)
-    }
+    private val viewModel: ExerciseListViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

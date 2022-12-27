@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import dev.lucianosantos.exerciseplanner.databinding.ExerciseItemBinding
-import dev.lucianosantos.exerciseplanner.models.Exercise
+import dev.lucianosantos.exerciseplanner.data.Exercise
 
 /**
  * [RecyclerView.Adapter] that can display a [Exercise].

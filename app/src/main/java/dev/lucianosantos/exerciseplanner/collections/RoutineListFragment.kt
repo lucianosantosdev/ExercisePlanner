@@ -4,16 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.divider.MaterialDividerItemDecoration
 import dev.lucianosantos.exerciseplanner.R
+import dev.lucianosantos.exerciseplanner.data.AppDatabase
 import dev.lucianosantos.exerciseplanner.databinding.FragmentRoutineListBinding
-import dev.lucianosantos.exerciseplanner.dummy.MockRoutines
-import java.text.FieldPosition
+import dev.lucianosantos.exerciseplanner.repositories.RoutinesRepository
 
 /**
  * A fragment representing a list of Items.
@@ -27,7 +24,7 @@ class RoutineListFragment : Fragment() {
     private lateinit var adapter: RoutineListAdapter
 
     private val viewModel: RoutineListViewModel by activityViewModels {
-        RoutineListViewModel.Factory(MockRoutines)
+        RoutineListViewModel.Factory(RoutinesRepository(AppDatabase.getInstance(requireContext()).routineDao()))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

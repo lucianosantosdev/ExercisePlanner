@@ -1,7 +1,7 @@
 package dev.lucianosantos.exerciseplanner.collections
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import dev.lucianosantos.exerciseplanner.models.Routine
+import dev.lucianosantos.exerciseplanner.data.Routine
 import dev.lucianosantos.exerciseplanner.repositories.TestRoutinesRepository
 import dev.lucianosantos.exerciseplanner.utils.getOrAwaitValue
 import org.junit.Before

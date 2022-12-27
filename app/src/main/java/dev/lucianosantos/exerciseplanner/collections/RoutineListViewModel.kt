@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import dev.lucianosantos.exerciseplanner.models.Routine
+import dev.lucianosantos.exerciseplanner.data.Routine
 import dev.lucianosantos.exerciseplanner.repositories.RoutinesRepository
 
 class RoutineListViewModel(private val repository: RoutinesRepository) : ViewModel() {
