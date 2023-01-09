@@ -1,22 +1,27 @@
 package dev.lucianosantos.exerciseplanner.repositories
 
+import dev.lucianosantos.exerciseplanner.data.Exercise
+import dev.lucianosantos.exerciseplanner.data.ExerciseDao
 import dev.lucianosantos.exerciseplanner.data.Routine
-import dev.lucianosantos.exerciseplanner.data.RoutineDao
-import java.util.UUID
+import java.util.*
 
-class RoutinesRepository(private val routineDao: RoutineDao) {
+class ExercisesRepository(private val exercisesDao: ExerciseDao) {
 
-    fun fetchRoutines() : List<Routine> = routineDao.getAll()
+    suspend fun getById(exerciseId: String) = exercisesDao.getById(exerciseId)
 
-    fun addRoutine(name: String, daysOfWeek: List<Int>) {
-        var routine = Routine(
+    suspend fun addExercise(name: String, routineId: String) {
+        var exercise = Exercise(
             id = UUID.randomUUID().toString(),
             name = name,
-            daysOfWeek = daysOfWeek
+            routineId = routineId
         )
-        routineDao.insert(routine)
+        exercisesDao.insert(exercise)
     }
 
-    fun getRoutineById(id: String) : Routine = routineDao.getById(id)
+    suspend fun fetchExercises(routineId: String? = null) =
+    if (routineId == null) {
+        exercisesDao.getAll()
+    } else {
+        exercisesDao.getAllByRoutineId(routineId)
     }
 }

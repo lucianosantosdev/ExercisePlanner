@@ -1,4 +1,4 @@
-package dev.lucianosantos.exerciseplanner.collections
+package dev.lucianosantos.exerciseplanner.fragments.collections
 
 import android.content.Context
 import android.graphics.Rect

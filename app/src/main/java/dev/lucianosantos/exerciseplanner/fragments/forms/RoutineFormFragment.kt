@@ -1,21 +1,15 @@
-package dev.lucianosantos.exerciseplanner.forms
+package dev.lucianosantos.exerciseplanner.fragments.forms
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import dev.lucianosantos.exerciseplanner.collections.RoutineListViewModel
 import dev.lucianosantos.exerciseplanner.databinding.FragmentRoutineFormBinding
 import dev.lucianosantos.exerciseplanner.R
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import dev.lucianosantos.exerciseplanner.viewmodels.RoutineDetailsViewModel
 
 /**
  * A [Fragment] that displays a form to create a new routine.
@@ -23,10 +17,9 @@ private const val ARG_PARAM2 = "param2"
 class RoutineFormFragment : Fragment() {
 
     private var _binding: FragmentRoutineFormBinding? = null
-
     private val binding get() = _binding!!
 
-    private val viewModel: RoutineListViewModel by viewModels()
+    private val viewModel: RoutineDetailsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,6 +42,6 @@ class RoutineFormFragment : Fragment() {
         val name = binding.routineNameEditText.text.toString()
         val daysOfWeek = binding.daysOfWeekChipGroup.checkedChipIds
 
-        viewModel.addRoutine(name, daysOfWeek)
+        viewModel.saveRoutine(name, daysOfWeek)
     }
 }

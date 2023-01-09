@@ -1,12 +1,24 @@
 package dev.lucianosantos.exerciseplanner.repositories
 
-import dev.lucianosantos.exerciseplanner.data.Exercise
+import dev.lucianosantos.exerciseplanner.data.Routine
+import dev.lucianosantos.exerciseplanner.data.RoutineDao
+import kotlinx.coroutines.flow.Flow
+import java.util.UUID
 
-interface ExercisesRepository {
+class RoutinesRepository(private val routineDao: RoutineDao) {
 
-    fun fetchExercises() : List<Exercise>
+    suspend fun getById(id: String) = routineDao.getById(id)
 
-    fun addExercise(name: String)
+    suspend fun fetchRoutines() : List<Routine> = routineDao.getAll()
 
-    fun fetchExercisesByRoutineId(routineId: String): List<Exercise>
+    suspend fun addRoutine(name: String, daysOfWeek: List<Int>) {
+        var routine = Routine(
+            id = UUID.randomUUID().toString(),
+            name = name,
+            daysOfWeek = daysOfWeek
+        )
+        routineDao.insert(routine)
+    }
+
+    suspend fun getRoutineById(id: String) : Routine? = routineDao.getById(id)
 }

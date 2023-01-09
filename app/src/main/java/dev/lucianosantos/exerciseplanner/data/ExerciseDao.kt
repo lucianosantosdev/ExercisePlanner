@@ -8,11 +8,20 @@ import androidx.room.Query
 @Dao
 interface ExerciseDao {
     @Insert
-    fun insert(exercise: Exercise)
+    suspend fun insert(exercise: Exercise)
 
     @Delete
-    fun delete(exercise: Exercise)
+    suspend fun delete(exercise: Exercise)
 
-    @Query("SELECT * FROM exercise WHERE id = :routineId")
-    fun getAllByRoutineId(routineId: String) : List<Exercise>
+    @Query("SELECT * FROM exercise")
+    suspend fun getAll() : List<Exercise>
+
+    @Query("SELECT * FROM exercise WHERE routineId = :routineId")
+    suspend fun getAllByRoutineId(routineId: String) : List<Exercise>
+
+    @Query("SELECT * FROM exercise WHERE id = :exerciseId")
+    suspend fun getById(exerciseId: String) : Exercise?
+
+
+
 }

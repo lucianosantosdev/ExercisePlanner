@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/routineListFragment"
-        android:name="dev.lucianosantos.exerciseplanner.collections.RoutineListFragment"
+        android:name="dev.lucianosantos.exerciseplanner.fragments.collections.RoutineListFragment"
         android:label="@string/title_fragment_routine_list"
         tools:layout="@layout/fragment_routine_list" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/routineFormFragment"
-        android:name="dev.lucianosantos.exerciseplanner.forms.RoutineFormFragment"
+        android:name="dev.lucianosantos.exerciseplanner.fragments.forms.RoutineFormFragment"
         android:label="fragment_routine_form"
         tools:layout="@layout/fragment_routine_form" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/exerciseListFragment"
-        android:name="dev.lucianosantos.exerciseplanner.collections.ExerciseListFragment"
+        android:name="dev.lucianosantos.exerciseplanner.fragments.collections.ExerciseListFragment"
         android:label="fragment_exercise_list"
         tools:layout="@layout/fragment_exercise_list" >
         <action
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/exerciseFormFragment"
-        android:name="dev.lucianosantos.exerciseplanner.forms.ExerciseFormFragment"
+        android:name="dev.lucianosantos.exerciseplanner.fragments.forms.ExerciseFormFragment"
         android:label="@string/title_exercise_form_fragment"
         tools:layout="@layout/fragment_exercise_form" />
 </navigation>

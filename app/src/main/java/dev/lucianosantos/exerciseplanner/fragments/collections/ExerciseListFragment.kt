@@ -1,4 +1,4 @@
-package dev.lucianosantos.exerciseplanner.collections
+package dev.lucianosantos.exerciseplanner.fragments.collections
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,15 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import dev.lucianosantos.exerciseplanner.R
+import dev.lucianosantos.exerciseplanner.adapters.ExerciseListAdapter
 import dev.lucianosantos.exerciseplanner.databinding.FragmentExerciseListBinding
-import dev.lucianosantos.exerciseplanner.repositories.RoutinesRepository
+import dev.lucianosantos.exerciseplanner.viewmodels.RoutinesViewModel
 
 /**
  * A fragment representing a list of Items.
@@ -22,14 +22,12 @@ import dev.lucianosantos.exerciseplanner.repositories.RoutinesRepository
 class ExerciseListFragment : Fragment() {
 
     private var _binding: FragmentExerciseListBinding? = null
-
     private val binding get() = _binding!!
 
+    private val arguments by navArgs<ExerciseListFragmentArgs>()
     private lateinit var adapter: ExerciseListAdapter
 
-    private lateinit var exerciseViewModel: ExerciseListViewModel
-
-    private val routinesViewModel: RoutineListViewModel by viewModels()
+    private val routinesViewModel: RoutinesViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,11 +39,6 @@ class ExerciseListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentExerciseListBinding.inflate(inflater, container, false)
-
-        val args: ExerciseListFragmentArgs by navArgs()
-
-        exerciseViewModel = ViewModelProvider(this).get(ExerciseListViewModel::class.java)
-
         return binding.root
     }
 
@@ -63,8 +56,9 @@ class ExerciseListFragment : Fragment() {
             findNavController().navigate(R.id.action_exerciseListFragment_to_exerciseFormFragment)
         }
 
-        exerciseViewModel.stateOnceAndStream().observe(viewLifecycleOwner) {
-            adapter.updateExercises(it.exerciseItemList)
+        // Fetch exercises
+        routinesViewModel.getExercises().observe(viewLifecycleOwner) {
+            adapter.updateExercises(it)
         }
     }
 

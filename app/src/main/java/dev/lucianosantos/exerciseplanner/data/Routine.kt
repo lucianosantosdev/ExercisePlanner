@@ -7,6 +7,5 @@ import androidx.room.PrimaryKey
 data class Routine(
     @PrimaryKey val id: String,
     val name: String,
-    val daysOfWeek: List<Int>,
-//    val exercises: List<Exercise>
+    val daysOfWeek: List<Int>
 )
