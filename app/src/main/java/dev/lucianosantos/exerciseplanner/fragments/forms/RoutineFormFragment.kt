@@ -8,8 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dev.lucianosantos.exerciseplanner.databinding.FragmentRoutineFormBinding
-import dev.lucianosantos.exerciseplanner.R
-import dev.lucianosantos.exerciseplanner.viewmodels.RoutineDetailsViewModel
+import dev.lucianosantos.exerciseplanner.data.AppDatabase
+import dev.lucianosantos.exerciseplanner.repositories.RoutinesRepository
+import dev.lucianosantos.exerciseplanner.viewmodels.RoutineFormViewModel
 
 /**
  * A [Fragment] that displays a form to create a new routine.
@@ -19,7 +20,10 @@ class RoutineFormFragment : Fragment() {
     private var _binding: FragmentRoutineFormBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: RoutineDetailsViewModel by viewModels()
+
+    private val viewModel: RoutineFormViewModel by viewModels {
+        RoutineFormViewModel.Factory(RoutinesRepository(AppDatabase.getInstance(requireContext()).routineDao()), null)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +38,8 @@ class RoutineFormFragment : Fragment() {
 
         binding.saveButton.setOnClickListener {
             onSave()
-            findNavController().navigate(R.id.action_routineFormFragment_to_exerciseListFragment)
+            findNavController().navigateUp()
+//            findNavController().navigate(R.id.action_routineFormFragment_to_exerciseListFragment)
         }
     }
 

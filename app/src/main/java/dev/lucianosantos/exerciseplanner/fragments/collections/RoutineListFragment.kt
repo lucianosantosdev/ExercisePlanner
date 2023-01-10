@@ -6,14 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dev.lucianosantos.exerciseplanner.R
 import dev.lucianosantos.exerciseplanner.adapters.RoutineListAdapter
 import dev.lucianosantos.exerciseplanner.data.AppDatabase
 import dev.lucianosantos.exerciseplanner.databinding.FragmentRoutineListBinding
-import dev.lucianosantos.exerciseplanner.repositories.ExercisesRepository
 import dev.lucianosantos.exerciseplanner.repositories.RoutinesRepository
-import dev.lucianosantos.exerciseplanner.viewmodels.RoutinesViewModel
+import dev.lucianosantos.exerciseplanner.viewmodels.RoutineListViewModel
 
 /**
  * A fragment representing a list of Items.
@@ -26,16 +26,15 @@ class RoutineListFragment : Fragment() {
 
     private lateinit var adapter: RoutineListAdapter
 
-    private val viewModel: RoutinesViewModel by activityViewModels {
-        RoutinesViewModel.Factory(
-            RoutinesRepository(AppDatabase.getInstance(requireContext()).routineDao()),
-            ExercisesRepository(AppDatabase.getInstance(requireContext()).exerciseDao())
+    private val viewModel: RoutineListViewModel by viewModels {
+        RoutineListViewModel.Factory(
+            RoutinesRepository(AppDatabase.getInstance(requireContext()).routineDao())
         )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        adapter = RoutineListAdapter{ id ->
+        adapter = RoutineListAdapter { id ->
             onRoutineItemSelected(id)
         }
     }
@@ -63,7 +62,7 @@ class RoutineListFragment : Fragment() {
             findNavController().navigate(R.id.action_routineListFragment_to_routineFormFragment)
         }
 
-        viewModel.getRoutines().observe(viewLifecycleOwner) {
+        viewModel.routines.observe(viewLifecycleOwner) {
             adapter.updateRoutines(it)
         }
     }

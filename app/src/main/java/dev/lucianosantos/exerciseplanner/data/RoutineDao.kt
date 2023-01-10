@@ -1,5 +1,6 @@
 package dev.lucianosantos.exerciseplanner.data
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
@@ -8,11 +9,11 @@ interface RoutineDao {
     @Insert
     suspend fun insert(routine: Routine)
 
-//    @Delete
-//    suspend fun delete(routine: Routine)
+    @Delete
+    suspend fun delete(routine: Routine)
 
     @Query("SELECT * FROM routine")
-    suspend fun getAll() : List<Routine>
+    fun getAll() : LiveData<List<Routine>>
 
     @Query("SELECT * FROM routine WHERE id = :id")
     suspend fun getById(id: String) : Routine?

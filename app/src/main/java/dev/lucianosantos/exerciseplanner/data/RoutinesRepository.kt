@@ -1,5 +1,6 @@
 package dev.lucianosantos.exerciseplanner.repositories
 
+import androidx.lifecycle.LiveData
 import dev.lucianosantos.exerciseplanner.data.Routine
 import dev.lucianosantos.exerciseplanner.data.RoutineDao
 import kotlinx.coroutines.flow.Flow
@@ -9,7 +10,7 @@ class RoutinesRepository(private val routineDao: RoutineDao) {
 
     suspend fun getById(id: String) = routineDao.getById(id)
 
-    suspend fun fetchRoutines() : List<Routine> = routineDao.getAll()
+    fun fetchRoutines() = routineDao.getAll()
 
     suspend fun addRoutine(name: String, daysOfWeek: List<Int>) {
         var routine = Routine(

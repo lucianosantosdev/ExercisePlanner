@@ -10,5 +10,10 @@ class Converters {
     fun fromIntList(value: List<Int>): String = value.joinToString(separator = ",")
 
     @TypeConverter
-    fun stringToIntList(string: String): List<Int> = string.split(",").map { it.toInt() }
+    fun stringToIntList(string: String): List<Int> =
+        if (string.isNotEmpty()) {
+            string.split(",").map { it.toInt() }
+        } else {
+            listOf()
+        }
 }

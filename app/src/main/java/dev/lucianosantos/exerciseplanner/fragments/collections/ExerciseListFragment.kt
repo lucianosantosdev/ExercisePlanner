@@ -4,17 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import dev.lucianosantos.exerciseplanner.R
 import dev.lucianosantos.exerciseplanner.adapters.ExerciseListAdapter
+import dev.lucianosantos.exerciseplanner.data.AppDatabase
 import dev.lucianosantos.exerciseplanner.databinding.FragmentExerciseListBinding
-import dev.lucianosantos.exerciseplanner.viewmodels.RoutinesViewModel
+import dev.lucianosantos.exerciseplanner.repositories.ExercisesRepository
+import dev.lucianosantos.exerciseplanner.viewmodels.ExerciseListViewModel
 
 /**
  * A fragment representing a list of Items.
@@ -25,9 +28,15 @@ class ExerciseListFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val arguments by navArgs<ExerciseListFragmentArgs>()
-    private lateinit var adapter: ExerciseListAdapter
 
-    private val routinesViewModel: RoutinesViewModel by activityViewModels()
+    private val exerciseListViewModel: ExerciseListViewModel by viewModels {
+        ExerciseListViewModel.Factory(
+            ExercisesRepository(AppDatabase.getInstance(requireContext()).exerciseDao()),
+            arguments.routineId
+        )
+    }
+
+    private lateinit var adapter: ExerciseListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +48,8 @@ class ExerciseListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentExerciseListBinding.inflate(inflater, container, false)
+        val routineId = arguments.routineId
+        Toast.makeText(requireContext(), routineId, Toast.LENGTH_SHORT).show()
         return binding.root
     }
 
@@ -53,11 +64,13 @@ class ExerciseListFragment : Fragment() {
         }
 
         binding.addExerciseFloatingActionButton.setOnClickListener{
-            findNavController().navigate(R.id.action_exerciseListFragment_to_exerciseFormFragment)
+            val routineId = arguments.routineId
+            val action = ExerciseListFragmentDirections.actionExerciseListFragmentToExerciseFormFragment(routineId)
+            findNavController().navigate(action)
         }
 
         // Fetch exercises
-        routinesViewModel.getExercises().observe(viewLifecycleOwner) {
+        exerciseListViewModel.exercises.observe(viewLifecycleOwner) {
             adapter.updateExercises(it)
         }
     }

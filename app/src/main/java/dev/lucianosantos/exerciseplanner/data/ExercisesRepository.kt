@@ -1,5 +1,7 @@
 package dev.lucianosantos.exerciseplanner.repositories
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.LiveDataReactiveStreams
 import dev.lucianosantos.exerciseplanner.data.Exercise
 import dev.lucianosantos.exerciseplanner.data.ExerciseDao
 import dev.lucianosantos.exerciseplanner.data.Routine
@@ -9,16 +11,11 @@ class ExercisesRepository(private val exercisesDao: ExerciseDao) {
 
     suspend fun getById(exerciseId: String) = exercisesDao.getById(exerciseId)
 
-    suspend fun addExercise(name: String, routineId: String) {
-        var exercise = Exercise(
-            id = UUID.randomUUID().toString(),
-            name = name,
-            routineId = routineId
-        )
+    suspend fun addExercise(exercise: Exercise) {
         exercisesDao.insert(exercise)
     }
 
-    suspend fun fetchExercises(routineId: String? = null) =
+    fun fetchExercises(routineId: String? = null) : LiveData<List<Exercise>> =
     if (routineId == null) {
         exercisesDao.getAll()
     } else {
