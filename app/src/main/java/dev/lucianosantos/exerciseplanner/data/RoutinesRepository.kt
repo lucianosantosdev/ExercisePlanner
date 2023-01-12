@@ -6,13 +6,13 @@ import dev.lucianosantos.exerciseplanner.data.RoutineDao
 import kotlinx.coroutines.flow.Flow
 import java.util.UUID
 
-class RoutinesRepository(private val routineDao: RoutineDao) {
+class RoutinesRepository(private val routineDao: RoutineDao) : IRoutinesRepository {
 
-    suspend fun getById(id: String) = routineDao.getById(id)
+    override suspend fun getById(id: String) = routineDao.getById(id)
 
-    fun fetchRoutines() = routineDao.getAll()
+    override fun fetchRoutines() = routineDao.getAll()
 
-    suspend fun addRoutine(name: String, daysOfWeek: List<Int>) {
+    override suspend fun addRoutine(name: String, daysOfWeek: List<Int>) {
         var routine = Routine(
             id = UUID.randomUUID().toString(),
             name = name,
@@ -20,6 +20,4 @@ class RoutinesRepository(private val routineDao: RoutineDao) {
         )
         routineDao.insert(routine)
     }
-
-    suspend fun getRoutineById(id: String) : Routine? = routineDao.getById(id)
 }

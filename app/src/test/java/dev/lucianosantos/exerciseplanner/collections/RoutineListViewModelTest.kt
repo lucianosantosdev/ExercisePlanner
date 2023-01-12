@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import dev.lucianosantos.exerciseplanner.data.Routine
 import dev.lucianosantos.exerciseplanner.repositories.TestRoutinesRepository
 import dev.lucianosantos.exerciseplanner.utils.getOrAwaitValue
+import dev.lucianosantos.exerciseplanner.viewmodels.RoutineListViewModel
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -15,27 +16,27 @@ class RoutineListViewModelTest {
 
     private val testRoutineRepository = TestRoutinesRepository()
 
-    private val viewModel = RoutineListViewModel(repository = testRoutineRepository)
+    private val viewModel = RoutineListViewModel(testRoutineRepository)
 
     @Before
     fun setup() {
-        testRoutineRepository.routineList.clear()
+        testRoutineRepository.clear()
     }
 
     @Test
     fun `Verify uiState is initialized with Routines`() {
         // Arrange
-        testRoutineRepository.routineList.add(
+        testRoutineRepository.add(
             Routine(id = "ID", "Test Routine", daysOfWeek = listOf(1,2,3,4,5,6,7))
         )
 
         // Act
-        val uiState = viewModel.stateOnceAndStream().getOrAwaitValue()
+        val routines = viewModel.routines.getOrAwaitValue()
 
         // Assert
-        assert(uiState.routineItemList.isNotEmpty())
-        assert(uiState.routineItemList[0].id == "ID")
-        assert(uiState.routineItemList[0].name == "Test Routine")
-        assert(uiState.routineItemList[0].daysOfWeek == listOf(1,2,3,4,5,6,7))
+        assert(routines.isNotEmpty())
+        assert(routines[0].id == "ID")
+        assert(routines[0].name == "Test Routine")
+        assert(routines[0].daysOfWeek == listOf(1,2,3,4,5,6,7))
     }
 }

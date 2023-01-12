@@ -5,12 +5,13 @@ import androidx.lifecycle.LiveDataReactiveStreams
 import dev.lucianosantos.exerciseplanner.data.Exercise
 import dev.lucianosantos.exerciseplanner.data.Routine
 import dev.lucianosantos.exerciseplanner.repositories.ExercisesRepository
+import dev.lucianosantos.exerciseplanner.repositories.IExercisesRepository
 import dev.lucianosantos.exerciseplanner.repositories.RoutinesRepository
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 
 class ExerciseListViewModel(
-    private val exercisesRepository: ExercisesRepository,
+    private val exercisesRepository: IExercisesRepository,
     private val routineId: String
 ) : ViewModel() {
 
@@ -19,7 +20,7 @@ class ExerciseListViewModel(
 
     @Suppress("UNCHECKED_CAST")
     class Factory(
-        private val exercisesRepository: ExercisesRepository,
+        private val exercisesRepository: IExercisesRepository,
         private val routineId: String
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
