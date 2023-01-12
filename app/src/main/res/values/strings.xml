@@ -8,5 +8,16 @@
     <string name="saturday">S</string>
     <string name="sunday">D</string>
     <string name="save">Salvar</string>
-    <string name="routine_name_hint">Nome do treino</string>
+    <string name="routine_name_hint">Nome</string>
+    <string name="title_activity_main">Exercise Planner</string>
+    <string name="title_fragment_routine_list">Titulo</string>
+    <string name="title_exercise_form_fragment">Novo exercício</string>
+    <string name="toggle_button_weight">Peso</string>
+    <string name="toggle_button_time">Tempo</string>
+    <string name="toggle_button_distance">Distância</string>
+    <string name="exercise_reps_input_text_hint">Repetições</string>
+    <string name="exercise_sets_input_text_hint">Series</string>
+    <string name="exercise_weight_input_text_hint">Peso</string>
+    <string name="subtitle_exercise_specs">Séries</string>
+    <string name="weight_unit">kg</string>
 </resources>

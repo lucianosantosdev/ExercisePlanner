@@ -3,20 +3,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/routineItemFragment">
+    app:startDestination="@id/routineListFragment">
 
     <fragment
-        android:id="@+id/routineItemFragment"
-        android:name="dev.lucianosantos.exerciseplanner.collections.RoutineListFragment"
-        android:label="fragment_routine_list"
+        android:id="@+id/routineListFragment"
+        android:name="dev.lucianosantos.exerciseplanner.fragments.collections.RoutineListFragment"
+        android:label="@string/title_fragment_routine_list"
         tools:layout="@layout/fragment_routine_list" >
         <action
-            android:id="@+id/action_routineItemFragment_to_routineFormFragment"
+            android:id="@+id/action_routineListFragment_to_routineFormFragment"
             app:destination="@id/routineFormFragment" />
+        <action
+            android:id="@+id/action_routineListFragment_to_exerciseListFragment"
+            app:destination="@id/exerciseListFragment" />
     </fragment>
     <fragment
         android:id="@+id/routineFormFragment"
-        android:name="dev.lucianosantos.exerciseplanner.forms.RoutineFormFragment"
+        android:name="dev.lucianosantos.exerciseplanner.fragments.forms.RoutineFormFragment"
         android:label="fragment_routine_form"
-        tools:layout="@layout/fragment_routine_form" />
+        tools:layout="@layout/fragment_routine_form" >
+        <action
+            android:id="@+id/action_routineFormFragment_to_exerciseListFragment"
+            app:destination="@id/exerciseListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/exerciseListFragment"
+        android:name="dev.lucianosantos.exerciseplanner.fragments.collections.ExerciseListFragment"
+        android:label="fragment_exercise_list"
+        tools:layout="@layout/fragment_exercise_list" >
+        <action
+            android:id="@+id/action_exerciseListFragment_to_exerciseFormFragment"
+            app:destination="@id/exerciseFormFragment" />
+        <action
+            android:id="@+id/action_exerciseListFragment_pop_to_routineListFragment"
+            app:popUpTo="@id/routineListFragment" />
+        <argument
+            android:name="routineId"
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/exerciseFormFragment"
+        android:name="dev.lucianosantos.exerciseplanner.fragments.forms.ExerciseFormFragment"
+        android:label="@string/title_exercise_form_fragment"
+        tools:layout="@layout/fragment_exercise_form" >
+        <argument
+            android:name="routineId"
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
 </navigation>
