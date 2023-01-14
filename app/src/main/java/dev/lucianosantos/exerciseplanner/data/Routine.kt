@@ -2,7 +2,7 @@ package dev.lucianosantos.exerciseplanner.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.UUID
+import java.util.*
 
 @Entity
 data class Routine(

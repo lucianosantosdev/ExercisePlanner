@@ -1,23 +1,20 @@
 package dev.lucianosantos.exerciseplanner.viewmodels
 
 import androidx.lifecycle.*
-import dev.lucianosantos.exerciseplanner.data.Exercise
-import dev.lucianosantos.exerciseplanner.data.Routine
-import dev.lucianosantos.exerciseplanner.repositories.ExercisesRepository
-import dev.lucianosantos.exerciseplanner.repositories.RoutinesRepository
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.launch
+import dev.lucianosantos.exerciseplanner.repositories.IRoutinesRepository
 
 class RoutineListViewModel(
-    private val routinesRepository: RoutinesRepository
+    private val routinesRepository: IRoutinesRepository
 ) : ViewModel() {
 
-    private var _routines = routinesRepository.fetchRoutines()
+    private val _routines by lazy {
+        routinesRepository.fetchRoutines()
+    }
     val routines get() = _routines
 
     @Suppress("UNCHECKED_CAST")
     class Factory(
-        private val routinesRepository: RoutinesRepository) : ViewModelProvider.Factory {
+        private val routinesRepository: IRoutinesRepository) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return RoutineListViewModel(routinesRepository) as T
         }

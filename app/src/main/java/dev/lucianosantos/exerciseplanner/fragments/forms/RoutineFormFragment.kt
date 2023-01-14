@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import dev.lucianosantos.exerciseplanner.databinding.FragmentRoutineFormBinding
 import dev.lucianosantos.exerciseplanner.data.AppDatabase
+import dev.lucianosantos.exerciseplanner.databinding.FragmentRoutineFormBinding
 import dev.lucianosantos.exerciseplanner.repositories.RoutinesRepository
 import dev.lucianosantos.exerciseplanner.viewmodels.RoutineFormViewModel
 

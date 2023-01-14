@@ -1,25 +1,21 @@
 package dev.lucianosantos.exerciseplanner.viewmodels
 
 import androidx.lifecycle.*
-import androidx.lifecycle.LiveDataReactiveStreams
-import dev.lucianosantos.exerciseplanner.data.Exercise
-import dev.lucianosantos.exerciseplanner.data.Routine
-import dev.lucianosantos.exerciseplanner.repositories.ExercisesRepository
-import dev.lucianosantos.exerciseplanner.repositories.RoutinesRepository
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.launch
+import dev.lucianosantos.exerciseplanner.repositories.IExercisesRepository
 
 class ExerciseListViewModel(
-    private val exercisesRepository: ExercisesRepository,
+    private val exercisesRepository: IExercisesRepository,
     private val routineId: String
 ) : ViewModel() {
 
-    private var _exercises = exercisesRepository.fetchExercises(routineId)
+    private val _exercises  by lazy {
+        exercisesRepository.fetchExercises(routineId)
+    }
     val exercises get() = _exercises
 
     @Suppress("UNCHECKED_CAST")
     class Factory(
-        private val exercisesRepository: ExercisesRepository,
+        private val exercisesRepository: IExercisesRepository,
         private val routineId: String
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {

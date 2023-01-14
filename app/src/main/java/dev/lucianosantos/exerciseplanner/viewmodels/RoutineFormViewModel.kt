@@ -11,23 +11,16 @@ class RoutineFormViewModel(
     private val routineId: String?
 ) : ViewModel() {
 
-    private val routine = MutableLiveData<Routine>()
-
-    init {
-        fetchRoutine()
-    }
-
-    private fun fetchRoutine() {
+    private val _routine by lazy {
         if (routineId != null) {
             viewModelScope.launch(IO) {
-                routine.postValue(routinesRepository.getById(routineId))
+                routinesRepository.getById(routineId)
             }
         } else {
-            routine.postValue(Routine())
+            Routine()
         }
     }
-
-    fun getRoutine() : LiveData<Routine> = routine
+    val routine get() = _routine
 
     fun saveRoutine(name: String, daysOfWeek: List<Int>) {
         viewModelScope.launch{
