@@ -1,11 +1,8 @@
 package dev.lucianosantos.exerciseplanner.repositories
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.LiveDataReactiveStreams
 import dev.lucianosantos.exerciseplanner.data.Exercise
 import dev.lucianosantos.exerciseplanner.data.ExerciseDao
-import dev.lucianosantos.exerciseplanner.data.Routine
-import java.util.*
 
 class ExercisesRepository(private val exercisesDao: ExerciseDao) : IExercisesRepository {
 

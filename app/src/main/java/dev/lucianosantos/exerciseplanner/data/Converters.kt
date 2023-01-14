@@ -1,8 +1,6 @@
 package dev.lucianosantos.exerciseplanner.data
 
 import androidx.room.TypeConverter
-import androidx.room.TypeConverters
-import kotlin.time.Duration
 
 class Converters {
 

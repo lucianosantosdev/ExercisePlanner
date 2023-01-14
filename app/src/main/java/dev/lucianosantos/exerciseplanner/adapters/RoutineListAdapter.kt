@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import dev.lucianosantos.exerciseplanner.databinding.RoutineItemBinding
 import dev.lucianosantos.exerciseplanner.data.Routine
+import dev.lucianosantos.exerciseplanner.databinding.RoutineItemBinding
 
 /**
  * [RecyclerView.Adapter] that can display a [Routine].

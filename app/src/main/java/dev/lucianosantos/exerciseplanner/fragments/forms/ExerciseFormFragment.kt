@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -14,7 +13,7 @@ import dev.lucianosantos.exerciseplanner.data.AppDatabase
 import dev.lucianosantos.exerciseplanner.data.Exercise
 import dev.lucianosantos.exerciseplanner.databinding.FragmentExerciseFormBinding
 import dev.lucianosantos.exerciseplanner.repositories.ExercisesRepository
-import java.util.UUID
+import java.util.*
 
 /**
  * A [Fragment] that displays a form to create a new routine.
