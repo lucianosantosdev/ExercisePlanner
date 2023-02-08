@@ -1,7 +1,7 @@
-package dev.lucianosantos.exerciseplanner.repositories
+package dev.lucianosantos.exerciseplanner.core.repository
 
-import dev.lucianosantos.exerciseplanner.data.Routine
-import dev.lucianosantos.exerciseplanner.data.RoutineDao
+import dev.lucianosantos.exerciseplanner.core.database.entity.Routine
+import dev.lucianosantos.exerciseplanner.core.database.dao.RoutineDao
 import java.util.*
 
 class RoutinesRepository(private val routineDao: RoutineDao) : IRoutinesRepository {

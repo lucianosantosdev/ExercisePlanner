@@ -1,7 +1,7 @@
-package dev.lucianosantos.exerciseplanner.viewmodels
+package dev.lucianosantos.exerciseplanner.core.viewmodels
 
 import androidx.lifecycle.*
-import dev.lucianosantos.exerciseplanner.repositories.IRoutinesRepository
+import dev.lucianosantos.exerciseplanner.core.repository.IRoutinesRepository
 
 class RoutineListViewModel(
     private val routinesRepository: IRoutinesRepository
@@ -14,7 +14,8 @@ class RoutineListViewModel(
 
     @Suppress("UNCHECKED_CAST")
     class Factory(
-        private val routinesRepository: IRoutinesRepository) : ViewModelProvider.Factory {
+        private val routinesRepository: IRoutinesRepository
+    ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return RoutineListViewModel(routinesRepository) as T
         }

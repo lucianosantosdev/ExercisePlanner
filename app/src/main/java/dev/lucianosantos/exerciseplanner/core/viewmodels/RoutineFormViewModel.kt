@@ -1,8 +1,8 @@
-package dev.lucianosantos.exerciseplanner.viewmodels
+package dev.lucianosantos.exerciseplanner.core.viewmodels
 
 import androidx.lifecycle.*
-import dev.lucianosantos.exerciseplanner.data.Routine
-import dev.lucianosantos.exerciseplanner.repositories.RoutinesRepository
+import dev.lucianosantos.exerciseplanner.core.database.entity.Routine
+import dev.lucianosantos.exerciseplanner.core.repository.RoutinesRepository
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 

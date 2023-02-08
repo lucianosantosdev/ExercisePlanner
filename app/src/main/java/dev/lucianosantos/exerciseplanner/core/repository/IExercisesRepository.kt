@@ -1,7 +1,7 @@
-package dev.lucianosantos.exerciseplanner.repositories
+package dev.lucianosantos.exerciseplanner.core.repository
 
 import androidx.lifecycle.LiveData
-import dev.lucianosantos.exerciseplanner.data.Exercise
+import dev.lucianosantos.exerciseplanner.core.database.entity.Exercise
 
 interface IExercisesRepository {
 

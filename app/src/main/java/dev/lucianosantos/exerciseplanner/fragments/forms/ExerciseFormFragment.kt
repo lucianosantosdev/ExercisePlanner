@@ -9,10 +9,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import dev.lucianosantos.exerciseplanner.collections.ExerciseFormViewModel
-import dev.lucianosantos.exerciseplanner.data.AppDatabase
-import dev.lucianosantos.exerciseplanner.data.Exercise
+import dev.lucianosantos.exerciseplanner.core.database.AppDatabase
+import dev.lucianosantos.exerciseplanner.core.database.entity.Exercise
 import dev.lucianosantos.exerciseplanner.databinding.FragmentExerciseFormBinding
-import dev.lucianosantos.exerciseplanner.repositories.ExercisesRepository
+import dev.lucianosantos.exerciseplanner.core.repository.ExercisesRepository
 import java.util.*
 
 /**
@@ -49,7 +49,8 @@ class ExerciseFormFragment : Fragment() {
     }
 
     private fun onSave() {
-        viewModel.saveExercise(Exercise(
+        viewModel.saveExercise(
+            Exercise(
             id = UUID.randomUUID().toString(),
             routineId = arguments.routineId,
             name = binding.exerciseNameEditText.text.toString(),
@@ -59,6 +60,7 @@ class ExerciseFormFragment : Fragment() {
             sessions = 0,
             intensity = 0,
             distance = 0,
-        ))
+        )
+        )
     }
 }

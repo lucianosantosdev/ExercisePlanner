@@ -1,7 +1,7 @@
-package dev.lucianosantos.exerciseplanner.viewmodels
+package dev.lucianosantos.exerciseplanner.core.viewmodels
 
 import androidx.lifecycle.*
-import dev.lucianosantos.exerciseplanner.repositories.IExercisesRepository
+import dev.lucianosantos.exerciseplanner.core.repository.IExercisesRepository
 
 class ExerciseListViewModel(
     private val exercisesRepository: IExercisesRepository,

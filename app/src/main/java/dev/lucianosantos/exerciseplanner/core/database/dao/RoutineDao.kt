@@ -1,7 +1,8 @@
-package dev.lucianosantos.exerciseplanner.data
+package dev.lucianosantos.exerciseplanner.core.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import dev.lucianosantos.exerciseplanner.core.database.entity.Routine
 
 @Dao
 interface RoutineDao {

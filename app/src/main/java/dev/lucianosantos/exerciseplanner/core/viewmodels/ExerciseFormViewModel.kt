@@ -1,8 +1,8 @@
 package dev.lucianosantos.exerciseplanner.collections
 
 import androidx.lifecycle.*
-import dev.lucianosantos.exerciseplanner.data.Exercise
-import dev.lucianosantos.exerciseplanner.repositories.IExercisesRepository
+import dev.lucianosantos.exerciseplanner.core.database.entity.Exercise
+import dev.lucianosantos.exerciseplanner.core.repository.IExercisesRepository
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 

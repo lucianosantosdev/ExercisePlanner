@@ -2,8 +2,9 @@ package dev.lucianosantos.exerciseplanner.viewmodels
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
-import dev.lucianosantos.exerciseplanner.data.Exercise
-import dev.lucianosantos.exerciseplanner.repositories.IExercisesRepository
+import dev.lucianosantos.exerciseplanner.core.database.entity.Exercise
+import dev.lucianosantos.exerciseplanner.core.viewmodels.ExerciseListViewModel
+import dev.lucianosantos.exerciseplanner.core.repository.IExercisesRepository
 import dev.lucianosantos.exerciseplanner.utils.getOrAwaitValue
 import org.junit.Before
 import org.junit.Rule

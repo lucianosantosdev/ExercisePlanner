@@ -1,13 +1,18 @@
-package dev.lucianosantos.exerciseplanner.data
+package dev.lucianosantos.exerciseplanner.core.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import dev.lucianosantos.exerciseplanner.core.database.converters.DaysOfWeekConverter
+import dev.lucianosantos.exerciseplanner.core.database.dao.ExerciseDao
+import dev.lucianosantos.exerciseplanner.core.database.dao.RoutineDao
+import dev.lucianosantos.exerciseplanner.core.database.entity.Exercise
+import dev.lucianosantos.exerciseplanner.core.database.entity.Routine
 
 @Database(entities = [Routine::class, Exercise::class], version = 1)
-@TypeConverters(Converters::class)
+@TypeConverters(DaysOfWeekConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun routineDao(): RoutineDao
     abstract fun exerciseDao(): ExerciseDao

@@ -13,10 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import dev.lucianosantos.exerciseplanner.R
 import dev.lucianosantos.exerciseplanner.adapters.ExerciseListAdapter
-import dev.lucianosantos.exerciseplanner.data.AppDatabase
+import dev.lucianosantos.exerciseplanner.core.database.AppDatabase
 import dev.lucianosantos.exerciseplanner.databinding.FragmentExerciseListBinding
-import dev.lucianosantos.exerciseplanner.repositories.ExercisesRepository
-import dev.lucianosantos.exerciseplanner.viewmodels.ExerciseListViewModel
+import dev.lucianosantos.exerciseplanner.core.repository.ExercisesRepository
+import dev.lucianosantos.exerciseplanner.core.viewmodels.ExerciseListViewModel
 
 /**
  * A fragment representing a list of Items.
