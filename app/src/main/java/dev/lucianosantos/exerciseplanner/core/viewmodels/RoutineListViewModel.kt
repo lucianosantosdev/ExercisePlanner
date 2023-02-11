@@ -1,9 +1,12 @@
 package dev.lucianosantos.exerciseplanner.core.viewmodels
 
 import androidx.lifecycle.*
+import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.lucianosantos.exerciseplanner.core.repository.IRoutinesRepository
+import javax.inject.Inject
 
-class RoutineListViewModel(
+@HiltViewModel
+class RoutineListViewModel @Inject constructor(
     private val routinesRepository: IRoutinesRepository
 ) : ViewModel() {
 

@@ -1,25 +1,20 @@
 package dev.lucianosantos.exerciseplanner.core.viewmodels
 
 import androidx.lifecycle.*
-import dev.lucianosantos.exerciseplanner.core.repository.IExercisesRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.lucianosantos.exerciseplanner.core.repository.IExerciseRepository
+import javax.inject.Inject
 
-class ExerciseListViewModel(
-    private val exercisesRepository: IExercisesRepository,
-    private val routineId: String
+@HiltViewModel
+class ExerciseListViewModel @Inject constructor(
+    private val exercisesRepository: IExerciseRepository,
+
 ) : ViewModel() {
+
+    lateinit var routineId: String
 
     private val _exercises  by lazy {
         exercisesRepository.fetchExercises(routineId)
     }
     val exercises get() = _exercises
-
-    @Suppress("UNCHECKED_CAST")
-    class Factory(
-        private val exercisesRepository: IExercisesRepository,
-        private val routineId: String
-    ) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return ExerciseListViewModel(exercisesRepository, routineId) as T
-        }
-    }
 }

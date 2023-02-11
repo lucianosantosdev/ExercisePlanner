@@ -1,20 +1,25 @@
 package dev.lucianosantos.exerciseplanner.core.viewmodels
 
 import androidx.lifecycle.*
+import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.lucianosantos.exerciseplanner.core.database.entity.Routine
+import dev.lucianosantos.exerciseplanner.core.repository.IRoutinesRepository
 import dev.lucianosantos.exerciseplanner.core.repository.RoutinesRepository
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class RoutineFormViewModel(
-    private val routinesRepository: RoutinesRepository,
-    private val routineId: String?
+@HiltViewModel
+class RoutineFormViewModel @Inject constructor(
+    private val routinesRepository: IRoutinesRepository,
 ) : ViewModel() {
+
+    var routineId: String? = null
 
     private val _routine by lazy {
         if (routineId != null) {
             viewModelScope.launch(IO) {
-                routinesRepository.getById(routineId)
+                routinesRepository.getById(routineId!!)
             }
         } else {
             Routine()
@@ -25,14 +30,6 @@ class RoutineFormViewModel(
     fun saveRoutine(name: String, daysOfWeek: List<Int>) {
         viewModelScope.launch{
             routinesRepository.addRoutine(name, daysOfWeek)
-        }
-    }
-
-    @Suppress("UNCHECKED_CAST")
-    class Factory(
-        private val routinesRepository: RoutinesRepository, private val routineId: String?) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return RoutineFormViewModel(routinesRepository, routineId) as T
         }
     }
 }

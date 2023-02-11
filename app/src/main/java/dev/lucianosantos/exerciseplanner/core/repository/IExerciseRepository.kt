@@ -3,7 +3,7 @@ package dev.lucianosantos.exerciseplanner.core.repository
 import androidx.lifecycle.LiveData
 import dev.lucianosantos.exerciseplanner.core.database.entity.Exercise
 
-interface IExercisesRepository {
+interface IExerciseRepository {
 
     suspend fun getById(exerciseId: String) : Exercise?
 
