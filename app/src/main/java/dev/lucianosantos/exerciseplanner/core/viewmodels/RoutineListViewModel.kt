@@ -1,9 +1,12 @@
-package dev.lucianosantos.exerciseplanner.viewmodels
+package dev.lucianosantos.exerciseplanner.core.viewmodels
 
 import androidx.lifecycle.*
-import dev.lucianosantos.exerciseplanner.repositories.IRoutinesRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.lucianosantos.exerciseplanner.core.repository.IRoutinesRepository
+import javax.inject.Inject
 
-class RoutineListViewModel(
+@HiltViewModel
+class RoutineListViewModel @Inject constructor(
     private val routinesRepository: IRoutinesRepository
 ) : ViewModel() {
 
@@ -14,7 +17,8 @@ class RoutineListViewModel(
 
     @Suppress("UNCHECKED_CAST")
     class Factory(
-        private val routinesRepository: IRoutinesRepository) : ViewModelProvider.Factory {
+        private val routinesRepository: IRoutinesRepository
+    ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return RoutineListViewModel(routinesRepository) as T
         }

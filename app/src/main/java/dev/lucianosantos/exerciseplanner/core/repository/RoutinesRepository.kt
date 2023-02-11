@@ -1,10 +1,13 @@
-package dev.lucianosantos.exerciseplanner.repositories
+package dev.lucianosantos.exerciseplanner.core.repository
 
-import dev.lucianosantos.exerciseplanner.data.Routine
-import dev.lucianosantos.exerciseplanner.data.RoutineDao
+import dev.lucianosantos.exerciseplanner.core.database.entity.Routine
+import dev.lucianosantos.exerciseplanner.core.database.dao.RoutineDao
 import java.util.*
+import javax.inject.Inject
 
-class RoutinesRepository(private val routineDao: RoutineDao) : IRoutinesRepository {
+class RoutinesRepository  @Inject constructor(
+    private val routineDao: RoutineDao
+) : IRoutinesRepository {
 
     override suspend fun getById(id: String) = routineDao.getById(id)
 

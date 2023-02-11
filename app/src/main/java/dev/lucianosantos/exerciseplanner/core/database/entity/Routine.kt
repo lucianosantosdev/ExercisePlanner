@@ -1,4 +1,4 @@
-package dev.lucianosantos.exerciseplanner.data
+package dev.lucianosantos.exerciseplanner.core.database.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

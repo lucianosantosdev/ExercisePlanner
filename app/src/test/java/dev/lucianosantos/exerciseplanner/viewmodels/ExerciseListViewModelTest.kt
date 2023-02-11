@@ -2,8 +2,9 @@ package dev.lucianosantos.exerciseplanner.viewmodels
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
-import dev.lucianosantos.exerciseplanner.data.Exercise
-import dev.lucianosantos.exerciseplanner.repositories.IExercisesRepository
+import dev.lucianosantos.exerciseplanner.core.database.entity.Exercise
+import dev.lucianosantos.exerciseplanner.core.viewmodels.ExerciseListViewModel
+import dev.lucianosantos.exerciseplanner.core.repository.IExerciseRepository
 import dev.lucianosantos.exerciseplanner.utils.getOrAwaitValue
 import org.junit.Before
 import org.junit.Rule
@@ -15,13 +16,13 @@ class ExerciseListViewModelTest {
     @get:Rule
     val instantExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var testExercisesRepository : IExercisesRepository
+    private lateinit var testExercisesRepository : IExerciseRepository
 
     private lateinit var viewModel: ExerciseListViewModel
 
     @Before
     fun setup() {
-        testExercisesRepository = Mockito.mock(IExercisesRepository::class.java)
+        testExercisesRepository = Mockito.mock(IExerciseRepository::class.java)
         viewModel = ExerciseListViewModel(testExercisesRepository, "RoutineId")
     }
 

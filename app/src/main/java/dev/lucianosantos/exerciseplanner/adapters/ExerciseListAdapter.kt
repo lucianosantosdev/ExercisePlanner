@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import dev.lucianosantos.exerciseplanner.data.Exercise
+import dev.lucianosantos.exerciseplanner.core.database.entity.Exercise
 import dev.lucianosantos.exerciseplanner.databinding.ExerciseItemBinding
 
 /**

@@ -1,10 +1,11 @@
-package dev.lucianosantos.exerciseplanner.data
+package dev.lucianosantos.exerciseplanner.core.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import dev.lucianosantos.exerciseplanner.core.database.entity.Exercise
 
 @Dao
 interface ExerciseDao {
