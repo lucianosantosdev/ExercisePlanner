@@ -3,6 +3,7 @@ package dev.lucianosantos.exerciseplanner.collections
 import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.lucianosantos.exerciseplanner.core.database.entity.Exercise
+import dev.lucianosantos.exerciseplanner.core.model.ExerciseDomain
 import dev.lucianosantos.exerciseplanner.core.repository.IExerciseRepository
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
@@ -23,7 +24,7 @@ class ExerciseFormViewModel @Inject constructor(
     }
     val exercise get() = _exercise
 
-    fun saveExercise(exercise: Exercise) {
+    fun saveExercise(exercise: ExerciseDomain) {
         viewModelScope.launch(IO){
             repository.addExercise(exercise)
         }

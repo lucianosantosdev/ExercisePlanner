@@ -40,6 +40,7 @@ class ExerciseListFragment : Fragment() {
         super.onCreate(savedInstanceState)
         exerciseListViewModel = ViewModelProvider(this)[ExerciseListViewModel::class.java]
         exerciseListViewModel.routineId = arguments.routineId
+        lifecycle.addObserver(ExerciseListLifecycleObserver(exerciseListViewModel))
         adapter = ExerciseListAdapter()
     }
 
@@ -70,8 +71,8 @@ class ExerciseListFragment : Fragment() {
         }
 
         // Fetch exercises
-        exerciseListViewModel.exercises.observe(viewLifecycleOwner) {
-            adapter.updateExercises(it)
+        exerciseListViewModel.uiState.observe(viewLifecycleOwner) {
+            adapter.updateExercises(it.exerciseItemList)
         }
     }
 

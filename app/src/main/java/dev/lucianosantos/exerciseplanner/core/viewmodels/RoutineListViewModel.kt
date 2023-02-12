@@ -2,7 +2,10 @@ package dev.lucianosantos.exerciseplanner.core.viewmodels
 
 import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.lucianosantos.exerciseplanner.core.database.entity.Exercise
 import dev.lucianosantos.exerciseplanner.core.repository.IRoutinesRepository
+import dev.lucianosantos.exerciseplanner.fragments.collections.model.RoutineItem
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -10,17 +13,30 @@ class RoutineListViewModel @Inject constructor(
     private val routinesRepository: IRoutinesRepository
 ) : ViewModel() {
 
-    private val _routines by lazy {
-        routinesRepository.fetchRoutines()
+    private val _uiState: MutableLiveData<UiState> by lazy {
+        MutableLiveData<UiState>(UiState(routineItemList = emptyList()))
     }
-    val routines get() = _routines
+    val uiState get() : LiveData<UiState> = _uiState
 
-    @Suppress("UNCHECKED_CAST")
-    class Factory(
-        private val routinesRepository: IRoutinesRepository
-    ) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return RoutineListViewModel(routinesRepository) as T
+    fun onResume() {
+        viewModelScope.launch {
+            refreshRoutineList()
         }
     }
+
+    private suspend fun refreshRoutineList() {
+        _uiState.postValue(
+            UiState(
+                routineItemList = routinesRepository.fetchRoutines()
+                    .map {
+                        RoutineItem(
+                            id = it.id,
+                            name = it.name
+                        )
+                    }
+            )
+        )
+    }
+
+    data class UiState(val routineItemList: List<RoutineItem>)
 }

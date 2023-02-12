@@ -7,13 +7,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import dev.lucianosantos.exerciseplanner.core.database.entity.Routine
 import dev.lucianosantos.exerciseplanner.databinding.RoutineItemBinding
+import dev.lucianosantos.exerciseplanner.fragments.collections.model.RoutineItem
 
 /**
  * [RecyclerView.Adapter] that can display a [Routine].
  */
 class RoutineListAdapter(private val onClickListener: (String) -> Unit) : RecyclerView.Adapter<RoutineListAdapter.ViewHolder>() {
 
-    private val asyncListDiffer: AsyncListDiffer<Routine> = AsyncListDiffer(this, DiffCallback)
+    private val asyncListDiffer: AsyncListDiffer<RoutineItem> = AsyncListDiffer(this, DiffCallback)
 
     interface OnClickListener {
         fun onItemClicked(id: Int)
@@ -36,12 +37,12 @@ class RoutineListAdapter(private val onClickListener: (String) -> Unit) : Recycl
 
     override fun getItemCount(): Int = asyncListDiffer.currentList.size
 
-    fun updateRoutines(routines: List<Routine>) {
+    fun updateRoutines(routines: List<RoutineItem>) {
         asyncListDiffer.submitList(routines)
     }
 
     inner class ViewHolder(private val binding: RoutineItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(routine: Routine) {
+        fun bind(routine: RoutineItem) {
             binding.routineNameTextView.text = routine.name
 
             itemView.setOnClickListener {
@@ -53,12 +54,12 @@ class RoutineListAdapter(private val onClickListener: (String) -> Unit) : Recycl
         }
     }
 
-    object DiffCallback : DiffUtil.ItemCallback<Routine>() {
-        override fun areItemsTheSame(oldItem: Routine, newItem: Routine): Boolean {
+    object DiffCallback : DiffUtil.ItemCallback<RoutineItem>() {
+        override fun areItemsTheSame(oldItem: RoutineItem, newItem: RoutineItem): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Routine, newItem: Routine): Boolean {
+        override fun areContentsTheSame(oldItem: RoutineItem, newItem: RoutineItem): Boolean {
             return oldItem.name == newItem.name
         }
     }
