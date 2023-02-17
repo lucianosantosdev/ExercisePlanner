@@ -1,9 +1,8 @@
-package dev.lucianosantos.exerciseplanner.core.database.converters
+package dev.lucianosantos.exerciseplanner.core.database.typeconverter
 
 import androidx.room.TypeConverter
 
-class DaysOfWeekConverter {
-
+class DaysOfWeekTypeConverter {
     @TypeConverter
     fun fromIntList(value: List<Int>): String = value.joinToString(separator = ",")
 

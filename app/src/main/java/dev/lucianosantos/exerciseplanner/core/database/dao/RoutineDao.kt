@@ -13,7 +13,7 @@ interface RoutineDao {
     suspend fun delete(routine: Routine)
 
     @Query("SELECT * FROM routine")
-    fun getAll() : LiveData<List<Routine>>
+    suspend fun getAll() : List<Routine>
 
     @Query("SELECT * FROM routine WHERE id = :id")
     suspend fun getById(id: String) : Routine?

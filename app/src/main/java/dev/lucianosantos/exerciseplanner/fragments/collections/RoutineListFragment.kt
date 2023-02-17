@@ -5,15 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import dev.lucianosantos.exerciseplanner.R
-import dev.lucianosantos.exerciseplanner.adapters.RoutineListAdapter
-import dev.lucianosantos.exerciseplanner.core.database.AppDatabase
+import dev.lucianosantos.exerciseplanner.fragments.collections.adapters.RoutineListAdapter
 import dev.lucianosantos.exerciseplanner.databinding.FragmentRoutineListBinding
-import dev.lucianosantos.exerciseplanner.core.repository.RoutinesRepository
 import dev.lucianosantos.exerciseplanner.core.viewmodels.RoutineListViewModel
 
 /**
@@ -28,11 +25,12 @@ class RoutineListFragment : Fragment() {
 
     private lateinit var adapter: RoutineListAdapter
 
-    private lateinit var viewModel: RoutineListViewModel
+    private lateinit var routineListViewModel: RoutineListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this)[RoutineListViewModel::class.java]
+        routineListViewModel = ViewModelProvider(this)[RoutineListViewModel::class.java]
+        lifecycle.addObserver(RoutineListLifecycleObserver(routineListViewModel))
         adapter = RoutineListAdapter { id ->
             onRoutineItemSelected(id)
         }
@@ -61,8 +59,8 @@ class RoutineListFragment : Fragment() {
             findNavController().navigate(R.id.action_routineListFragment_to_routineFormFragment)
         }
 
-        viewModel.routines.observe(viewLifecycleOwner) {
-            adapter.updateRoutines(it)
+        routineListViewModel.uiState.observe(viewLifecycleOwner) {
+            adapter.updateRoutines(it.routineItemList)
         }
     }
 

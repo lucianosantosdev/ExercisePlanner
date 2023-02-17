@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import dev.lucianosantos.exerciseplanner.R
-import dev.lucianosantos.exerciseplanner.adapters.ExerciseListAdapter
+import dev.lucianosantos.exerciseplanner.fragments.collections.adapters.ExerciseListAdapter
 import dev.lucianosantos.exerciseplanner.collections.ExerciseFormViewModel
 import dev.lucianosantos.exerciseplanner.core.database.AppDatabase
 import dev.lucianosantos.exerciseplanner.databinding.FragmentExerciseListBinding
@@ -40,6 +40,7 @@ class ExerciseListFragment : Fragment() {
         super.onCreate(savedInstanceState)
         exerciseListViewModel = ViewModelProvider(this)[ExerciseListViewModel::class.java]
         exerciseListViewModel.routineId = arguments.routineId
+        lifecycle.addObserver(ExerciseListLifecycleObserver(exerciseListViewModel))
         adapter = ExerciseListAdapter()
     }
 
@@ -70,8 +71,8 @@ class ExerciseListFragment : Fragment() {
         }
 
         // Fetch exercises
-        exerciseListViewModel.exercises.observe(viewLifecycleOwner) {
-            adapter.updateExercises(it)
+        exerciseListViewModel.uiState.observe(viewLifecycleOwner) {
+            adapter.updateExercises(it.exerciseItemList)
         }
     }
 

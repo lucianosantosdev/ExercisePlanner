@@ -3,7 +3,9 @@ package dev.lucianosantos.exerciseplanner.collections
 import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.lucianosantos.exerciseplanner.core.database.entity.Exercise
+import dev.lucianosantos.exerciseplanner.core.model.ExerciseDomain
 import dev.lucianosantos.exerciseplanner.core.repository.IExerciseRepository
+import dev.lucianosantos.exerciseplanner.fragments.collections.model.ExerciseItem
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,16 +18,16 @@ class ExerciseFormViewModel @Inject constructor(
 
     lateinit var exerciseId: String
 
-    private val _exercise by lazy {
-        viewModelScope.launch(IO) {
-            repository.getById(exerciseId)
-        }
+    private val _uiState: MutableLiveData<UiState>  by lazy {
+        MutableLiveData<UiState>(UiState(exerciseItem = null))
     }
-    val exercise get() = _exercise
+    val uiState get() : LiveData<UiState> = _uiState
 
-    fun saveExercise(exercise: Exercise) {
+    fun saveExercise(exercise: ExerciseDomain) {
         viewModelScope.launch(IO){
             repository.addExercise(exercise)
         }
     }
+
+    data class UiState(val exerciseItem: ExerciseItem?)
 }

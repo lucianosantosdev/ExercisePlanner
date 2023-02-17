@@ -16,17 +16,6 @@ class RoutineFormViewModel @Inject constructor(
 
     var routineId: String? = null
 
-    private val _routine by lazy {
-        if (routineId != null) {
-            viewModelScope.launch(IO) {
-                routinesRepository.getById(routineId!!)
-            }
-        } else {
-            Routine()
-        }
-    }
-    val routine get() = _routine
-
     fun saveRoutine(name: String, daysOfWeek: List<Int>) {
         viewModelScope.launch{
             routinesRepository.addRoutine(name, daysOfWeek)

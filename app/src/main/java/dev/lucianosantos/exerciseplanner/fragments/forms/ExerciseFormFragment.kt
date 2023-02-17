@@ -13,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.lucianosantos.exerciseplanner.collections.ExerciseFormViewModel
 import dev.lucianosantos.exerciseplanner.core.database.AppDatabase
 import dev.lucianosantos.exerciseplanner.core.database.entity.Exercise
+import dev.lucianosantos.exerciseplanner.core.model.ExerciseDomain
 import dev.lucianosantos.exerciseplanner.databinding.FragmentExerciseFormBinding
 import dev.lucianosantos.exerciseplanner.core.repository.ExerciseRepository
 import java.util.*
@@ -51,17 +52,17 @@ class ExerciseFormFragment : Fragment() {
 
     private fun onSave() {
         viewModel.saveExercise(
-            Exercise(
-            id = UUID.randomUUID().toString(),
-            routineId = arguments.routineId,
-            name = binding.exerciseNameEditText.text.toString(),
-            repetitions = 0,
-            weight = 0,
-            timeSeconds = 0,
-            sessions = 0,
-            intensity = 0,
-            distance = 0,
-        )
+            ExerciseDomain(
+                id = UUID.randomUUID().toString(),
+                routineId = arguments.routineId,
+                name = binding.exerciseNameEditText.text.toString(),
+                repetitions = 0,
+                weight = 0,
+                timeSeconds = 0,
+                sessions = 0,
+                intensity = 0,
+                distance = 0,
+            )
         )
     }
 }
