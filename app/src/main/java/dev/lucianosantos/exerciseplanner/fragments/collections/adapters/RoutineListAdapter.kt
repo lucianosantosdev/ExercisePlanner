@@ -1,4 +1,4 @@
-package dev.lucianosantos.exerciseplanner.adapters
+package dev.lucianosantos.exerciseplanner.fragments.collections.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -12,13 +12,23 @@ import dev.lucianosantos.exerciseplanner.fragments.collections.model.RoutineItem
 /**
  * [RecyclerView.Adapter] that can display a [Routine].
  */
-class RoutineListAdapter(private val onClickListener: (String) -> Unit) : RecyclerView.Adapter<RoutineListAdapter.ViewHolder>() {
+class RoutineListAdapter(
+    private val onClickListener: (String) -> Unit
+) : RecyclerView.Adapter<RoutineListAdapter.ViewHolder>() {
+    inner class ViewHolder(private val binding: RoutineItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(routine: RoutineItem) {
+            binding.routineNameTextView.text = routine.name
+
+            itemView.setOnClickListener {
+                val position = absoluteAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onClickListener(routine.id)
+                }
+            }
+        }
+    }
 
     private val asyncListDiffer: AsyncListDiffer<RoutineItem> = AsyncListDiffer(this, DiffCallback)
-
-    interface OnClickListener {
-        fun onItemClicked(id: Int)
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -41,18 +51,6 @@ class RoutineListAdapter(private val onClickListener: (String) -> Unit) : Recycl
         asyncListDiffer.submitList(routines)
     }
 
-    inner class ViewHolder(private val binding: RoutineItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(routine: RoutineItem) {
-            binding.routineNameTextView.text = routine.name
-
-            itemView.setOnClickListener {
-                val position = absoluteAdapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    onClickListener(routine.id)
-                }
-            }
-        }
-    }
 
     object DiffCallback : DiffUtil.ItemCallback<RoutineItem>() {
         override fun areItemsTheSame(oldItem: RoutineItem, newItem: RoutineItem): Boolean {

@@ -3,9 +3,13 @@ package dev.lucianosantos.exerciseplanner.viewmodels
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import dev.lucianosantos.exerciseplanner.core.database.entity.Routine
+import dev.lucianosantos.exerciseplanner.core.model.RoutineDomain
+import dev.lucianosantos.exerciseplanner.core.model.toEntity
 import dev.lucianosantos.exerciseplanner.core.viewmodels.RoutineListViewModel
 import dev.lucianosantos.exerciseplanner.core.repository.IRoutinesRepository
+import dev.lucianosantos.exerciseplanner.utils.MainDispatcherRule
 import dev.lucianosantos.exerciseplanner.utils.getOrAwaitValue
+import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -15,6 +19,9 @@ class RoutineListViewModelTest {
 
     @get:Rule
     val instantExecutorRule = InstantTaskExecutorRule()
+
+    @get:Rule
+    val mainDispatcherRule = MainDispatcherRule()
 
     private lateinit var routineRepository: IRoutinesRepository
 
@@ -27,19 +34,20 @@ class RoutineListViewModelTest {
     }
 
     @Test
-    fun `Verify uiState is initialized with Routines`() {
+    fun `Verify uiState is initialized with Routines`() = runTest {
         // Arrange
-        val routine = Routine(id = "ID", "Test Routine", daysOfWeek = listOf(1,2,3,4,5,6,7))
-        val fetchRoutineResults = MutableLiveData<List<Routine>>()
-        fetchRoutineResults.value = listOf(routine)
+        val routine = RoutineDomain(id = "ID", "Test Routine", daysOfWeek = listOf(1,2,3,4,5,6,7))
+        val fetchRoutineResults = listOf(routine)
         Mockito.`when`(routineRepository.fetchRoutines()).thenReturn(fetchRoutineResults)
 
 
         // Act
-        val routines = viewModel.routines.getOrAwaitValue()
+        viewModel.onResume()
+        val routines = viewModel.uiState.getOrAwaitValue()
 
         // Assert
-        assert(routines.isNotEmpty())
-        assert(routines[0] == routine)
+        assert(routines.routineItemList.isNotEmpty())
+        assert(routines.routineItemList[0].id == routine.id)
+        assert(routines.routineItemList[0].name == routine.name)
     }
 }

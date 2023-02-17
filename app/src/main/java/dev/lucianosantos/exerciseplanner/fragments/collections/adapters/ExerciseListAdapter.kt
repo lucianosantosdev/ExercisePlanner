@@ -1,4 +1,4 @@
-package dev.lucianosantos.exerciseplanner.adapters
+package dev.lucianosantos.exerciseplanner.fragments.collections.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
