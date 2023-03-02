@@ -28,7 +28,7 @@ class RoutineFormViewModel @Inject constructor(
     }
     val uiState get() : LiveData<UiState> = _uiState
 
-    fun getRoutineById() {
+    private fun getRoutineById() {
         if (routineId == null) return
 
         viewModelScope.launch {
@@ -42,13 +42,11 @@ class RoutineFormViewModel @Inject constructor(
 
     data class UiState(val routineItem: RoutineItem?)
 
-    fun saveRoutine(name: String, daysOfWeek: List<Int>) {
-        viewModelScope.launch{
-            if (routineId == null) {
-                routinesRepository.addRoutine(name, daysOfWeek)
-            } else {
-                // routinesRepository.updateRoutine(routineId, name, daysOfWeek)
-            }
+    suspend fun saveRoutine(name: String, daysOfWeek: List<Int>) {
+        if (routineId == null) {
+            routinesRepository.addRoutine(name, daysOfWeek)
+        } else {
+            routinesRepository.updateRoutine(routineId!!, name, daysOfWeek)
         }
     }
 }
