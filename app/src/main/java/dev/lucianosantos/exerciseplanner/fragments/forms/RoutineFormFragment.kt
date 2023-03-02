@@ -5,13 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
-import dev.lucianosantos.exerciseplanner.core.database.AppDatabase
 import dev.lucianosantos.exerciseplanner.databinding.FragmentRoutineFormBinding
-import dev.lucianosantos.exerciseplanner.core.repository.RoutinesRepository
 import dev.lucianosantos.exerciseplanner.core.viewmodels.RoutineFormViewModel
 
 /**
@@ -23,20 +21,26 @@ class RoutineFormFragment : Fragment() {
     private var _binding: FragmentRoutineFormBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel : RoutineFormViewModel
+    private val arguments by navArgs<RoutineFormFragmentArgs>()
 
+    private lateinit var routineFormViewModel : RoutineFormViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentRoutineFormBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this)[RoutineFormViewModel::class.java]
+        routineFormViewModel = ViewModelProvider(this)[RoutineFormViewModel::class.java]
+        routineFormViewModel.routineId = arguments?.routineId
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        routineFormViewModel.uiState.observe(viewLifecycleOwner) {
+            binding.routineNameEditText.setText(it.routineItem?.name)
+
+        }
         binding.saveButton.setOnClickListener {
             onSave()
             findNavController().navigateUp()
@@ -48,6 +52,6 @@ class RoutineFormFragment : Fragment() {
         val name = binding.routineNameEditText.text.toString()
         val daysOfWeek = binding.daysOfWeekChipGroup.checkedChipIds
 
-        viewModel.saveRoutine(name, daysOfWeek)
+        routineFormViewModel.saveRoutine(name, daysOfWeek)
     }
 }

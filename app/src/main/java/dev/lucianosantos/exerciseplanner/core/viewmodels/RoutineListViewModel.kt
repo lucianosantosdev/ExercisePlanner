@@ -31,7 +31,8 @@ class RoutineListViewModel @Inject constructor(
                     .map {
                         RoutineItem(
                             id = it.id,
-                            name = it.name
+                            name = it.name,
+                            daysOfWeek = it.daysOfWeek
                         )
                     }
             )
