@@ -14,13 +14,14 @@ class RoutinesRepository @Inject constructor(
 
     override suspend fun fetchRoutines() = routineDao.getAll().map { it.toDomain() }
 
-    override suspend fun addRoutine(name: String, daysOfWeek: List<Int>) {
+    override suspend fun addRoutine(name: String, daysOfWeek: List<Int>) : String {
         var routine = Routine(
             id = UUID.randomUUID().toString(),
             name = name,
             daysOfWeek = daysOfWeek
         )
         routineDao.insert(routine)
+        return routine.id
     }
 
     override suspend fun updateRoutine(id: String, name: String, daysOfWeek: List<Int>) {

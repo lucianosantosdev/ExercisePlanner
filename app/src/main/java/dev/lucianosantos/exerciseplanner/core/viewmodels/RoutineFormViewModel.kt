@@ -40,11 +40,11 @@ class RoutineFormViewModel @Inject constructor(
 
     data class UiState(val routineItem: RoutineItem?)
 
-    suspend fun saveRoutine(name: String, daysOfWeek: List<Int>) {
-        if (routineId == null) {
-            routinesRepository.addRoutine(name, daysOfWeek)
-        } else {
-            routinesRepository.updateRoutine(routineId!!, name, daysOfWeek)
-        }
+    suspend fun saveRoutine(name: String, daysOfWeek: List<Int>) : String =
+    if (routineId == null) {
+        routinesRepository.addRoutine(name, daysOfWeek)
+    } else {
+        routinesRepository.updateRoutine(routineId!!, name, daysOfWeek)
+        routineId!!
     }
 }

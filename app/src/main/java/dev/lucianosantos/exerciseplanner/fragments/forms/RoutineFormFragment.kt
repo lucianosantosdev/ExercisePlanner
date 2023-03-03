@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
+import dev.lucianosantos.exerciseplanner.R
 import dev.lucianosantos.exerciseplanner.core.viewmodels.RoutineFormViewModel
 import dev.lucianosantos.exerciseplanner.databinding.FragmentRoutineFormBinding
 import kotlinx.coroutines.Dispatchers
@@ -36,7 +37,7 @@ class RoutineFormFragment : Fragment() {
     ): View? {
         _binding = FragmentRoutineFormBinding.inflate(inflater, container, false)
         routineFormViewModel = ViewModelProvider(this)[RoutineFormViewModel::class.java]
-        routineFormViewModel.routineId = arguments?.routineId
+        routineFormViewModel.routineId = arguments.routineId
         return binding.root
     }
 
@@ -70,9 +71,16 @@ class RoutineFormFragment : Fragment() {
         }
 
         lifecycleScope.launch(Dispatchers.IO) {
-            routineFormViewModel.saveRoutine(routineName, daysOfWeekSelected)
+            val savedRoutineId = routineFormViewModel.saveRoutine(routineName, daysOfWeekSelected)
+            val isEdition = arguments.routineId != null
+
             withContext(Dispatchers.Main) {
-                findNavController().navigateUp()
+                if (isEdition) {
+                    findNavController().navigateUp()
+                } else {
+                    val action = RoutineFormFragmentDirections.actionRoutineFormFragmentToExerciseListFragment(savedRoutineId)
+                    findNavController().navigate(action)
+                }
             }
         }
     }

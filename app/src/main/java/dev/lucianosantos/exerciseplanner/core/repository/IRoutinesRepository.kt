@@ -8,7 +8,7 @@ interface IRoutinesRepository {
 
     suspend fun fetchRoutines() : List<RoutineDomain>
 
-    suspend fun addRoutine(name: String, daysOfWeek: List<Int>)
+    suspend fun addRoutine(name: String, daysOfWeek: List<Int>) : String
 
     suspend fun updateRoutine(id: String, name: String, daysOfWeek: List<Int>)
 }
