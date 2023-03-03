@@ -1,13 +1,9 @@
 package dev.lucianosantos.exerciseplanner.core.repository
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import dev.lucianosantos.exerciseplanner.core.database.entity.Exercise
 import dev.lucianosantos.exerciseplanner.core.database.dao.ExerciseDao
 import dev.lucianosantos.exerciseplanner.core.model.ExerciseDomain
 import dev.lucianosantos.exerciseplanner.core.model.toDomain
 import dev.lucianosantos.exerciseplanner.core.model.toEntity
-import java.util.*
 import javax.inject.Inject
 
 class ExerciseRepository @Inject constructor(

@@ -40,7 +40,7 @@ androidx-room-testing = {module = "androidx.room:room-testing", version.ref = "r
 androidx-junit-ktx = { module = "androidx.test.ext:junit-ktx", version.ref = "androidXTestJunitVersion" }
 androidx-junit = { module = "androidx.test.ext:junit", version.ref = "androidXTestJunitVersion" }
 androidx-core-ktx-test  = { module = "androidx.test:core-ktx", version.ref = "androidXTestCoreVersion" }
-core-testing = { module = "android.arch.core:core-testing", version.ref = "androidCoreTestingVersions" }
+core-testing = { module = "androidx.arch.core:core-testing", version.ref = "androidCoreTestingVersions" }
 junit = { module = "junit:junit", version.ref = "junitVersion" }
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCoreVersion" }
 mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlinVersion" }

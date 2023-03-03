@@ -12,8 +12,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
-import dev.lucianosantos.exerciseplanner.databinding.FragmentRoutineFormBinding
 import dev.lucianosantos.exerciseplanner.core.viewmodels.RoutineFormViewModel
+import dev.lucianosantos.exerciseplanner.databinding.FragmentRoutineFormBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

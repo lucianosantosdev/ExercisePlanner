@@ -1,6 +1,5 @@
 package dev.lucianosantos.exerciseplanner.core.model
 
-import dev.lucianosantos.exerciseplanner.core.database.entity.Exercise
 import dev.lucianosantos.exerciseplanner.core.database.entity.Routine
 
 fun Routine.toDomain() = RoutineDomain(

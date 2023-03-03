@@ -9,10 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import dev.lucianosantos.exerciseplanner.R
-import dev.lucianosantos.exerciseplanner.fragments.collections.adapters.RoutineListAdapter
-import dev.lucianosantos.exerciseplanner.databinding.FragmentRoutineListBinding
 import dev.lucianosantos.exerciseplanner.core.viewmodels.RoutineListViewModel
-import dev.lucianosantos.exerciseplanner.fragments.forms.RoutineFormFragmentDirections
+import dev.lucianosantos.exerciseplanner.databinding.FragmentRoutineListBinding
+import dev.lucianosantos.exerciseplanner.fragments.collections.adapters.RoutineListAdapter
 
 /**
  * A fragment representing a list of Items.

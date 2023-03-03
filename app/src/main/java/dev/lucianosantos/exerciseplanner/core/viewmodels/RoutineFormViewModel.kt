@@ -1,15 +1,13 @@
 package dev.lucianosantos.exerciseplanner.core.viewmodels
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.lucianosantos.exerciseplanner.core.database.entity.Routine
-import dev.lucianosantos.exerciseplanner.core.model.ExerciseDomain
 import dev.lucianosantos.exerciseplanner.core.repository.IRoutinesRepository
-import dev.lucianosantos.exerciseplanner.core.repository.RoutinesRepository
-import dev.lucianosantos.exerciseplanner.fragments.collections.model.ExerciseItem
 import dev.lucianosantos.exerciseplanner.fragments.collections.model.RoutineItem
 import dev.lucianosantos.exerciseplanner.fragments.collections.model.toRoutineItem
-import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
