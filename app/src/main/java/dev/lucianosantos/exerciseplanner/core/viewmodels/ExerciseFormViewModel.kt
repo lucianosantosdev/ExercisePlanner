@@ -1,8 +1,10 @@
 package dev.lucianosantos.exerciseplanner.collections
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.lucianosantos.exerciseplanner.core.database.entity.Exercise
 import dev.lucianosantos.exerciseplanner.core.model.ExerciseDomain
 import dev.lucianosantos.exerciseplanner.core.repository.IExerciseRepository
 import dev.lucianosantos.exerciseplanner.fragments.collections.model.ExerciseItem

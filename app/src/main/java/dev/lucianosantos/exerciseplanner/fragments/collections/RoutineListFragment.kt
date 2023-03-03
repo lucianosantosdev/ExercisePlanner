@@ -9,9 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import dev.lucianosantos.exerciseplanner.R
-import dev.lucianosantos.exerciseplanner.fragments.collections.adapters.RoutineListAdapter
-import dev.lucianosantos.exerciseplanner.databinding.FragmentRoutineListBinding
 import dev.lucianosantos.exerciseplanner.core.viewmodels.RoutineListViewModel
+import dev.lucianosantos.exerciseplanner.databinding.FragmentRoutineListBinding
+import dev.lucianosantos.exerciseplanner.fragments.collections.adapters.RoutineListAdapter
 
 /**
  * A fragment representing a list of Items.
@@ -31,13 +31,24 @@ class RoutineListFragment : Fragment() {
         super.onCreate(savedInstanceState)
         routineListViewModel = ViewModelProvider(this)[RoutineListViewModel::class.java]
         lifecycle.addObserver(RoutineListLifecycleObserver(routineListViewModel))
-        adapter = RoutineListAdapter { id ->
-            onRoutineItemSelected(id)
-        }
+        adapter = RoutineListAdapter (
+            onItemClickListener = { id ->
+                onRoutineItemClicked(id)
+            },
+            onEditClickListener = { id ->
+                onRoutineEditClicked(id)
+            }
+
+        )
     }
 
-    private fun onRoutineItemSelected(id: String) {
+    private fun onRoutineItemClicked(id: String) {
         val action = RoutineListFragmentDirections.actionRoutineListFragmentToExerciseListFragment(id)
+        findNavController().navigate(action)
+    }
+
+    private fun onRoutineEditClicked(id: String) {
+        val action = RoutineListFragmentDirections.actionRoutineListFragmentToRoutineFormFragment(id)
         findNavController().navigate(action)
     }
 

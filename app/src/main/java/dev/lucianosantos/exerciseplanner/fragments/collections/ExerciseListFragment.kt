@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -14,12 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import dev.lucianosantos.exerciseplanner.R
-import dev.lucianosantos.exerciseplanner.fragments.collections.adapters.ExerciseListAdapter
-import dev.lucianosantos.exerciseplanner.collections.ExerciseFormViewModel
-import dev.lucianosantos.exerciseplanner.core.database.AppDatabase
-import dev.lucianosantos.exerciseplanner.databinding.FragmentExerciseListBinding
-import dev.lucianosantos.exerciseplanner.core.repository.ExerciseRepository
 import dev.lucianosantos.exerciseplanner.core.viewmodels.ExerciseListViewModel
+import dev.lucianosantos.exerciseplanner.databinding.FragmentExerciseListBinding
+import dev.lucianosantos.exerciseplanner.fragments.collections.adapters.ExerciseListAdapter
 
 /**
  * A fragment representing a list of Items.

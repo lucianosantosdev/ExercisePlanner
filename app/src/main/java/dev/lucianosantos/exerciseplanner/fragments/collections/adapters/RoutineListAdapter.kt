@@ -13,7 +13,8 @@ import dev.lucianosantos.exerciseplanner.fragments.collections.model.RoutineItem
  * [RecyclerView.Adapter] that can display a [Routine].
  */
 class RoutineListAdapter(
-    private val onClickListener: (String) -> Unit
+    private val onItemClickListener: (String) -> Unit,
+    private val onEditClickListener: (String) -> Unit
 ) : RecyclerView.Adapter<RoutineListAdapter.ViewHolder>() {
     inner class ViewHolder(private val binding: RoutineItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(routine: RoutineItem) {
@@ -22,8 +23,12 @@ class RoutineListAdapter(
             itemView.setOnClickListener {
                 val position = absoluteAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    onClickListener(routine.id)
+                    onItemClickListener(routine.id)
                 }
+            }
+
+            binding.editIconButton.setOnClickListener {
+                onEditClickListener(routine.id)
             }
         }
     }
@@ -50,7 +55,6 @@ class RoutineListAdapter(
     fun updateRoutines(routines: List<RoutineItem>) {
         asyncListDiffer.submitList(routines)
     }
-
 
     object DiffCallback : DiffUtil.ItemCallback<RoutineItem>() {
         override fun areItemsTheSame(oldItem: RoutineItem, newItem: RoutineItem): Boolean {

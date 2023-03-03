@@ -1,8 +1,10 @@
 package dev.lucianosantos.exerciseplanner.core.viewmodels
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.lucianosantos.exerciseplanner.core.database.entity.Exercise
 import dev.lucianosantos.exerciseplanner.core.repository.IRoutinesRepository
 import dev.lucianosantos.exerciseplanner.fragments.collections.model.RoutineItem
 import kotlinx.coroutines.launch
@@ -31,7 +33,8 @@ class RoutineListViewModel @Inject constructor(
                     .map {
                         RoutineItem(
                             id = it.id,
-                            name = it.name
+                            name = it.name,
+                            daysOfWeek = it.daysOfWeek
                         )
                     }
             )

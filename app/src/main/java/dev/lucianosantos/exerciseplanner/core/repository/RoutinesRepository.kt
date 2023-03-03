@@ -1,12 +1,12 @@
 package dev.lucianosantos.exerciseplanner.core.repository
 
-import dev.lucianosantos.exerciseplanner.core.database.entity.Routine
 import dev.lucianosantos.exerciseplanner.core.database.dao.RoutineDao
+import dev.lucianosantos.exerciseplanner.core.database.entity.Routine
 import dev.lucianosantos.exerciseplanner.core.model.toDomain
 import java.util.*
 import javax.inject.Inject
 
-class RoutinesRepository  @Inject constructor(
+class RoutinesRepository @Inject constructor(
     private val routineDao: RoutineDao
 ) : IRoutinesRepository {
 
@@ -21,5 +21,12 @@ class RoutinesRepository  @Inject constructor(
             daysOfWeek = daysOfWeek
         )
         routineDao.insert(routine)
+    }
+
+    override suspend fun updateRoutine(id: String, name: String, daysOfWeek: List<Int>) {
+        routineDao.update(RoutineDao.RoutineUpdate(
+            id = id,
+            name = name, daysOfWeek = daysOfWeek)
+        )
     }
 }

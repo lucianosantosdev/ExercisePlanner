@@ -1,6 +1,5 @@
 package dev.lucianosantos.exerciseplanner.core.database.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import dev.lucianosantos.exerciseplanner.core.database.entity.Routine
 
@@ -18,11 +17,13 @@ interface RoutineDao {
     @Query("SELECT * FROM routine WHERE id = :id")
     suspend fun getById(id: String) : Routine?
 
-//    @Transaction
-//    @Query("SELECT * FROM routine")
-//    suspend fun getAllRoutineWithExercises(): List<RoutineWithExercises>
-//
-//    @Transaction
-//    @Query("SELECT * FROM routine WHERE id = :id")
-//    suspend fun getRoutineWithExercisesById(id: String): List<RoutineWithExercises>
+    @Update(entity = Routine::class)
+    fun update(obj: RoutineUpdate)
+
+    @Entity
+    data class RoutineUpdate (
+        val id : String,
+        val name : String,
+        val daysOfWeek: List<Int>,
+    )
 }

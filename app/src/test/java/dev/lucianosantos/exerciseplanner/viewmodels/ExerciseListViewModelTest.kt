@@ -1,11 +1,9 @@
 package dev.lucianosantos.exerciseplanner.viewmodels
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.MutableLiveData
-import dev.lucianosantos.exerciseplanner.core.database.entity.Exercise
 import dev.lucianosantos.exerciseplanner.core.model.ExerciseDomain
-import dev.lucianosantos.exerciseplanner.core.viewmodels.ExerciseListViewModel
 import dev.lucianosantos.exerciseplanner.core.repository.IExerciseRepository
+import dev.lucianosantos.exerciseplanner.core.viewmodels.ExerciseListViewModel
 import dev.lucianosantos.exerciseplanner.utils.MainDispatcherRule
 import dev.lucianosantos.exerciseplanner.utils.getOrAwaitValue
 import kotlinx.coroutines.test.runTest
