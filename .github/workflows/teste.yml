@@ -2,6 +2,8 @@ name: Teste
 
 on:
   push:
+    tags:
+      - '*'
 
 jobs:
   build:
